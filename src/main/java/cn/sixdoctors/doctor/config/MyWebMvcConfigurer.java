@@ -7,16 +7,18 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 import org.springframework.web.servlet.config.annotation.*;
 
+import javax.annotation.Resource;
+
 /**
  * Created by wpc on 2017/5/21.
  */
 @Configuration
 public class MyWebMvcConfigurer extends WebMvcConfigurerAdapter {
 
-    @Autowired
+    @Resource
     private LoginInterceptor loginInterceptor;
 
-    @Autowired
+    @Resource
     private CrossFieldInterceptor crossFieldInterceptor;
 
     @Override
