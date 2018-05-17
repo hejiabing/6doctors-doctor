@@ -16,5 +16,5 @@ Class-Path: jul-to-slf4j-1.7.25.jar spring-webmvc-5.0.6.RELEASE.jar sn
  spring-jcl-5.0.6.RELEASE.jar javax.annotation-api-1.3.2.jar spring-co
  ntext-5.0.6.RELEASE.jar spring-boot-starter-tomcat-2.0.2.RELEASE.jar 
  spring-aop-5.0.6.RELEASE.jar
-Main-Class: cn.sixdoctors.doctor.SpringBootApplication
+Main-Class: cn.sixdoctors.doctor.DoctorApplication
 
