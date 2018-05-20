@@ -52,7 +52,6 @@ public class LoginService {
         } else {
             user = userDAO.findByUserName(account);
         }
-
         if (user == null) {
             throw new NotFoundException(ACCOUNT_NOT_FOUND);
         } else if (!user.getPassword().equals(password)){
