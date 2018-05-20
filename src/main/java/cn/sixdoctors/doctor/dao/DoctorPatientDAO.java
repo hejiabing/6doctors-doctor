@@ -19,4 +19,6 @@ public interface DoctorPatientDAO {
 
     List<DoctorPatient> findByDoctorName(String doctorName);
 
+    void update(DoctorPatient doctorPatient);
+
 }

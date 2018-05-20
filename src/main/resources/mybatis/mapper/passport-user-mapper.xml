@@ -64,4 +64,65 @@
         mobile = #{mobile} AND is_delete = 0
     </select>
 
+    <update id="update" parameterType="cn.sixdoctors.doctor.model.PassportUser">
+        UPDATE t_passport_user
+        <set>
+            <if test="password != null and password != ''">
+                password = #{password},
+            </if>
+            <if test="status != 0">
+                status = #{status},
+            </if>
+            <if test="roleId != 0">
+                role_id = #{roleId},
+            </if>
+            <if test="enterCount != 0">
+                enter_count = #{enterCount},
+            </if>
+            <if test="lastLoginTime != null">
+                last_login_time = #{lastLoginTime},
+            </if>
+            <if test="registerIp != null and registerIp != ''">
+                register_ip = #{registerIp},
+            </if>
+            <if test="lastLoginIp != null and lastLoginIp != ''">
+                last_login_ip = #{lastLoginIp},
+            </if>
+            <if test="userDetailId != 0">
+                user_detail_id = #{userDetailId},
+            </if>
+            <if test="delete != 0">
+                is_delete = #{delete},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="createUser != 0">
+                create_user = #{createUser},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+            <if test="updateUser != 0">
+                update_user = #{updateUser},
+            </if>
+            <if test="mobile != null and mobile != ''">
+                mobile = #{mobile},
+            </if>
+            <if test="disableReason != null and disableReason != ''">
+                disable_reason = #{disableReason},
+            </if>
+            <if test="referralCode != null and referralCode != ''">
+                referral_code = #{referralCode},
+            </if>
+            <if test="systemType != 0">
+                system_type = #{systemType},
+            </if>
+            <if test="source != 0">
+                source = #{source},
+            </if>
+        </set>
+        WHERE user_id = #{userId}
+    </update>
+
 </mapper>

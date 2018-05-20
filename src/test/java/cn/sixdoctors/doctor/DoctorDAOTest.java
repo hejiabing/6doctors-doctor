@@ -56,4 +56,15 @@ public class DoctorDAOTest {
 
     }
 
+    @Test
+    public void update() {
+        Doctor doctor = new Doctor();
+        doctor.setDoctorId(1);
+        doctor.setDoctorName("王鹏程");
+        doctor.setHospitalName("同济医院");
+        doctor.setDepartName("update");
+        doctorDAO.update(doctor);
+
+    }
+
 }

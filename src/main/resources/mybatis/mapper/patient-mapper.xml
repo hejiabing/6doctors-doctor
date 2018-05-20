@@ -44,4 +44,38 @@
         mobPhone = #{mobPhone}
     </select>
 
+    <update id="update" parameterType="cn.sixdoctors.doctor.model.Patient">
+        UPDATE t_patient
+        <set>
+            <if test="patientName != null and patientName != ''">
+                patient_name = #{patientName},
+            </if>
+            <if test="gender != null and gender != ''">
+                gender = #{gender},
+            </if>
+            <if test="mobPhone != null and mobPhone != ''">
+                mobPhone = #{mobPhone},
+            </if>
+            <if test="age != 0">
+                age = #{age},
+            </if>
+            <if test="identityType != null and identityType != ''">
+                identity_type = #{identityType},
+            </if>
+            <if test="identityNum != null and identityNum != ''">
+                identity_num = #{identityNum},
+            </if>
+            <if test="address != null and address != ''">
+                address = #{address},
+            </if>
+            <if test="place != null and place != ''">
+                place = #{place},
+            </if>
+            <if test="photoPath != null and photoPath != ''">
+                photoPath = #{photoPath},
+            </if>
+        </set>
+        WHERE patient_id = #{patientId}
+    </update>
+
 </mapper>

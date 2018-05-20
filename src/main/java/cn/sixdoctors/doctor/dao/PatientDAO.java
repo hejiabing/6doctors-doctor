@@ -19,4 +19,6 @@ public interface PatientDAO {
 
     Patient findByMobPhone(String mobPhone);
 
+    void update(Patient patient);
+
 }
