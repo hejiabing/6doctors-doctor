@@ -12,6 +12,6 @@ public interface PassportUserDAO {
 
     PassportUser findByUserName(String userName);
 
-    PassportUser findBymobile(String mobile);
+    PassportUser findByMobile(String mobile);
 
 }

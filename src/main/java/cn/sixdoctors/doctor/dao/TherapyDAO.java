@@ -10,12 +10,12 @@ import java.util.Map;
  * Created by wangpengcheng on 2018/5/20.
  */
 public interface TherapyDAO {
-    void insert(Therapy doctor);
+    void insert(Therapy therapy);
 
-    Therapy findByDoctorId(int doctorId);
+    List<Therapy> findByDoctorId(int doctorId);
 
-    Therapy findByPatientId(int PatientId);
+    Therapy findById(int therapyId);
 
-    List<Therapy> findByDoctorName(String doctorName);
+    List<Therapy> findByPatientId(int PatientId);
 
 }

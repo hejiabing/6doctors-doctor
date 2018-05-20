@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.sixdoctors.doctor.dao.NurseDAO">
+    <resultMap id="nurse" type="cn.sixdoctors.doctor.model.Nurse">
+        <id column="nurse_id" property="nurseId" jdbcType="INTEGER"/>
+        <result column="nurse_name" property="nurseName" jdbcType="VARCHAR"/>
+        <result column="hospital_name" property="hospitalName" jdbcType="VARCHAR"/>
+        <result column="depart_name" property="departName" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="cn.sixdoctors.doctor.model.Doctor" useGeneratedKeys="true"
+            keyProperty="nurse_id">
+        INSERT INTO
+        t_nurse
+        (nurse_name, hospital_name, depart_name)
+        VALUES
+        (#{nurseName}, #{hospitalName}, #{departName})
+    </insert>
+
+    <select id="findByNurseId" parameterType="int" resultMap="nurse">
+        SELECT nurse_id, nurse_name, hospital_name, depart_name
+        FROM t_nurse
+        WHERE
+        nurse_id = #{nurseId}
+    </select>
+
+    <select id="findByNurseName" parameterType="string" resultMap="nurse">
+        SELECT nurse_id, nurse_name, hospital_name, depart_name
+        FROM t_nurse
+        WHERE
+        nurse_name LIKE CONCAT('%',#{0},'%')
+    </select>
+
+    <select id="findBySearch" parameterType="map" resultMap="nurse">
+        SELECT nurse_id, nurse_name, hospital_name, depart_name
+        FROM t_nurse
+        <where>
+            <if test="hospitalName != null and hospitalName != ''">
+                hospital_name LIKE #{hospitalName}
+            </if>
+            <if test="departName != null and departName != ''">
+                AND depart_name LIKE #{departName}
+            </if>
+            <if test="nurse_name != null and nurse_name != ''">
+                AND nurse_name LIKE CONCAT('%',#{nurseName},'%')
+            </if>
+        </where>
+    </select>
+
+</mapper>

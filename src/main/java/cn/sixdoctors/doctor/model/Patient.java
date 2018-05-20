@@ -13,7 +13,7 @@ public class Patient {
     private String identityNum;
     private String address;
     private String place;
-    private String photePath;
+    private String photoPath;
 
     public int getPatientId() {
         return patientId;
@@ -87,12 +87,12 @@ public class Patient {
         this.place = place;
     }
 
-    public String getPhotePath() {
-        return photePath;
+    public String getPhotoPath() {
+        return photoPath;
     }
 
-    public void setPhotePath(String photePath) {
-        this.photePath = photePath;
+    public void setPhotoPath(String photoPath) {
+        this.photoPath = photoPath;
     }
 
     @Override
@@ -107,7 +107,7 @@ public class Patient {
                 ", identityNum='" + identityNum + '\'' +
                 ", address='" + address + '\'' +
                 ", place='" + place + '\'' +
-                ", photePath='" + photePath + '\'' +
+                ", photoPath='" + photoPath + '\'' +
                 '}';
     }
 }

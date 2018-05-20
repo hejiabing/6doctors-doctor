@@ -17,7 +17,6 @@ public interface PatientDAO {
 
     List<Patient> findByPatientName(String patientName);
 
-    List<Patient> findByMobPhone(String mobPhone);
+    Patient findByMobPhone(String mobPhone);
 
-    List<Patient> findBySearch(Map<String, String> params);
 }

@@ -6,7 +6,7 @@ package cn.sixdoctors.doctor.model;
 public class Nurse {
     private int nurseId;
     private String nurseName;
-    private String hospitaName;
+    private String hospitalName;
     private String departName;
 
     public int getNurseId() {
@@ -25,12 +25,12 @@ public class Nurse {
         this.nurseName = nurseName;
     }
 
-    public String getHospitaName() {
-        return hospitaName;
+    public String getHospitalName() {
+        return hospitalName;
     }
 
-    public void setHospitaName(String hospitaName) {
-        this.hospitaName = hospitaName;
+    public void setHospitalName(String hospitalName) {
+        this.hospitalName = hospitalName;
     }
 
     public String getDepartName() {
@@ -46,7 +46,7 @@ public class Nurse {
         return "Nurse{" +
                 "nurseId=" + nurseId +
                 ", nurseName='" + nurseName + '\'' +
-                ", hospitaName='" + hospitaName + '\'' +
+                ", hospitalName='" + hospitalName + '\'' +
                 ", departName='" + departName + '\'' +
                 '}';
     }

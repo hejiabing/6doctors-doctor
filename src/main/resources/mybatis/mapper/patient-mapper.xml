@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.sixdoctors.doctor.dao.PatientDAO">
+    <resultMap id="patient" type="cn.sixdoctors.doctor.model.Patient">
+        <id column="patient_id" property="patientId" jdbcType="INTEGER"/>
+        <result column="patient_name" property="patientName" jdbcType="VARCHAR"/>
+        <result column="gender" property="gender" jdbcType="VARCHAR"/>
+        <result column="mobPhone" property="mobPhone" jdbcType="VARCHAR"/>
+        <result column="age" property="age" jdbcType="INTEGER"/>
+        <result column="identity_type" property="identityType" jdbcType="VARCHAR"/>
+        <result column="identity_num" property="identityNum" jdbcType="VARCHAR"/>
+        <result column="address" property="address" jdbcType="VARCHAR"/>
+        <result column="place" property="place" jdbcType="VARCHAR"/>
+        <result column="photoPath" property="photoPath" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="cn.sixdoctors.doctor.model.Patient" useGeneratedKeys="true"
+            keyProperty="patient_id">
+        INSERT INTO
+        t_patient
+        (patient_name, gender, mobPhone, age, identity_type, identity_num, address, place, photoPath)
+        VALUES
+        (#{patientName}, #{gender}, #{mobPhone}, #{age}, #{identityType}, #{identityNum}, #{address}, #{place}, #{photoPath})
+    </insert>
+
+    <select id="findByPatientId" parameterType="int" resultMap="patient">
+        SELECT patient_id, patient_name, gender, mobPhone, age, identity_type, identity_num, address, place, photoPath
+        FROM t_patient
+        WHERE
+        patient_id = #{patientId}
+    </select>
+
+    <select id="findByPatientName" parameterType="string" resultMap="patient">
+        SELECT patient_id, patient_name, gender, mobPhone, age, identity_type, identity_num, address, place, photoPath
+        FROM t_patient
+        WHERE
+        patient_name = #{patientName}
+    </select>
+
+    <select id="findByMobPhone" parameterType="string" resultMap="patient">
+        SELECT patient_id, patient_name, gender, mobPhone, age, identity_type, identity_num, address, place, photoPath
+        FROM t_patient
+        WHERE
+        mobPhone = #{mobPhone}
+    </select>
+
+</mapper>
