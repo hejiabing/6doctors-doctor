@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.sixdoctors.doctor.dao.DepartmentDAO">
+    <resultMap id="department" type="cn.sixdoctors.doctor.model.Department">
+        <id column="department_id" property="departmentId" jdbcType="INTEGER"/>
+        <result column="department_name" property="departmentName" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="cn.sixdoctors.doctor.model.Department" useGeneratedKeys="true"
+            keyProperty="department_id">
+        INSERT INTO
+        t_department
+        (department_name)
+        VALUES
+        (#{departmentName})
+    </insert>
+
+    <insert id="insertAll" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="department_id">
+        INSERT INTO
+        t_department
+        (department_name)
+        VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+            (
+            #{item.departmentName}
+            )
+        </foreach>
+    </insert>
+
+    <select id="selectAll" resultMap="department">
+        SELECT
+        department_id, department_name
+        FROM t_department
+    </select>
+
+</mapper>

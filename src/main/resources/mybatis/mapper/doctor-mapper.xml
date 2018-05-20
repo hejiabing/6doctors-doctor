@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.sixdoctors.doctor.dao.DoctorDAO">
+    <resultMap id="doctor" type="cn.sixdoctors.doctor.model.Doctor">
+        <id column="doctor_id" property="doctorId" jdbcType="INTEGER"/>
+        <result column="doctor_name" property="doctorName" jdbcType="VARCHAR"/>
+        <result column="hospital_name" property="hospitalName" jdbcType="VARCHAR"/>
+        <result column="depart_name" property="departName" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="cn.sixdoctors.doctor.model.Doctor" useGeneratedKeys="true"
+            keyProperty="doctor_id">
+        INSERT INTO
+        t_doctor
+        (doctor_name, hospital_name, depart_name)
+        VALUES
+        (#{doctor_name}, #{hospital_name}, #{depart_name})
+    </insert>
+
+    <select id="findByDoctorId" parameterType="int" resultType="cn.sixdoctors.doctor.model.Doctor">
+        SELECT doctor_id, doctor_name, hospital_name, depart_name
+        FROM t_doctor
+        WHERE
+        doctor_id = #{0}
+    </select>
+
+    <select id="findByDoctorName" parameterType="string" resultType="doctor">
+        SELECT doctor_id, doctor_name, hospital_name, depart_name
+        FROM t_doctor
+        WHERE
+        doctor_id LIKE #{0}
+    </select>
+
+</mapper>

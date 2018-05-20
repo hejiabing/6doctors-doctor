@@ -7,7 +7,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 @SpringBootApplication
-@MapperScan("cn.sixdoctors.dao")
+@MapperScan("cn.sixdoctors.doctor.dao")
 public class DoctorApplication extends SpringBootServletInitializer {
 
     public static void main(String[] args) {

@@ -1,6 +1,5 @@
 package cn.sixdoctors.doctor.controller;
 
-import cn.sixdoctors.doctor.model.User;
 import cn.sixdoctors.doctor.vo.VO;
 import cn.sixdoctors.doctor.wrapper.LoginWrapper;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,15 +19,15 @@ public class LoginController {
     @Resource
     private LoginWrapper loginWrapper;
 
-    @RequestMapping("/doctor/login")
-    public VO validateUser(@RequestBody Map<String, Object> params) {
-        String username = params.get("username").toString();
-        String password = params.get("password").toString();
-        User user = new User();
-        user.setUsername(username);
-        user.setPassword(password);
-
-        return VO.SUCCESS;
-    }
+//    @RequestMapping("/doctor/login")
+//    public VO validateUser(@RequestBody Map<String, Object> params) {
+//        String username = params.get("username").toString();
+//        String password = params.get("password").toString();
+//        User user = new User();
+//        user.setUsername(username);
+//        user.setPassword(password);
+//
+//        return VO.SUCCESS;
+//    }
 
 }
