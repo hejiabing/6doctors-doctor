@@ -25,7 +25,7 @@
     </resultMap>
 
     <sql id="column_List">
-        user_id,user_name,password,status,role_id,enter_count,last_login_time,register_ip,last_login_ip,user_detail_id,delete,
+        user_id,user_name,password,status,role_id,enter_count,last_login_time,register_ip,last_login_ip,user_detail_id,is_delete,
         create_time,create_user,update_time,update_user,mobile,disable_reason,system_type,source,referral_code
     </sql>
 
@@ -33,7 +33,7 @@
             keyProperty="user_id">
         INSERT INTO
         t_passport_user
-        (user_name,password,status,role_id,enter_count,last_login_time,register_ip,last_login_ip,user_detail_id,delete,
+        (user_name,password,status,role_id,enter_count,last_login_time,register_ip,last_login_ip,user_detail_id,is_delete,
         create_time,create_user,update_time,update_user,mobile,disable_reason,system_type,source,referral_code)
         VALUES
         (#{userName},#{password},#{status},#{roleId},#{enterCount},#{lastLoginTime},#{registerIp},#{lastLoginIp},
@@ -49,14 +49,14 @@
         user_id = #{userId} AND is_delete = 0
     </select>
 
-    <select id="findByUserName" parameterType="int" resultMap="passportUser">
+    <select id="findByUserName" parameterType="string" resultMap="passportUser">
         SELECT
         <include refid="column_List"/>
         FROM t_passport_user
         WHERE
         user_name = #{userName} AND is_delete = 0
     </select>
-    <select id="findByMobile" parameterType="int" resultMap="passportUser">
+    <select id="findByMobile" parameterType="string" resultMap="passportUser">
         SELECT
         <include refid="column_List"/>
         FROM t_passport_user
