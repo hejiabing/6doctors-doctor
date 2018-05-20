@@ -17,4 +17,6 @@ public interface NurseDAO {
     List<Nurse> findByNurseName(String nurseName);
 
     List<Nurse> findBySearch(Map<String, String> params);
+
+    void update(Nurse nurse);
 }

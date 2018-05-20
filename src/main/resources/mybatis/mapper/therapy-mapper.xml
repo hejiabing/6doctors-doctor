@@ -40,4 +40,26 @@
         patient_id = #{patient_Id}
     </select>
 
+    <update id="update" parameterType="cn.sixdoctors.doctor.model.Therapy">
+        UPDATE t_therapy
+        <set>
+            <if test="doctorId != 0">
+                doctor_id = #{doctorId},
+            </if>
+            <if test="patientId != 0">
+                patient_id = #{patientId},
+            </if>
+            <if test="state != null and state != ''">
+                state = #{state},
+            </if>
+            <if test="date != null">
+                date = #{date},
+            </if>
+            <if test="record != null and record != ''">
+                record = #{record},
+            </if>
+        </set>
+        WHERE therapy_id = #{therapyId}
+    </update>
+
 </mapper>

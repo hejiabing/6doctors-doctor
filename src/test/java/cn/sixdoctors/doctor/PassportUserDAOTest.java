@@ -33,7 +33,7 @@ public class PassportUserDAOTest {
 
     @Test
     public void findByUserName() {
-        System.out.println(userDAO.findByUserName("赵用户"));
+        System.out.println(userDAO.findByUserName("deven"));
     }
 
     @Test
@@ -41,4 +41,12 @@ public class PassportUserDAOTest {
         System.out.println(userDAO.findByMobile("155000000"));
     }
 
+    @Test
+    public void update() {
+        PassportUser user = new PassportUser();
+        user.setUserName("deven");
+        user.setMobile("update");
+        user.setUserId(1);
+        userDAO.update(user);
+    }
 }

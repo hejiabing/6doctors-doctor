@@ -18,4 +18,6 @@ public interface TherapyDAO {
 
     List<Therapy> findByPatientId(int PatientId);
 
+    void update(Therapy therapy);
+
 }
