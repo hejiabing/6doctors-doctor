@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.sixdoctors.doctor.dao.CaseDAO">
+    <resultMap id="case" type="cn.sixdoctors.doctor.model.Case">
+        <id column="case_id" property="caseId" jdbcType="INTEGER"/>
+        <result column="therapy_id" property="therapyId" jdbcType="INTEGER"/>
+        <result column="casePath" property="casePath" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="cn.sixdoctors.doctor.model.Case" useGeneratedKeys="true" keyProperty="case_id">
+        INSERT INTO
+        t_case
+        (therapy_id, casePath)
+        VALUES
+        (#{therapyId}, #{casePath})
+    </insert>
+
+    <insert id="insertAll" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="case_id">
+        INSERT INTO
+        t_case
+        (therapy_id, casePath)
+        VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+            (
+            #{item.therapyId},
+            #{item.casePath}
+            )
+        </foreach>
+    </insert>
+
+    <select id="selectByTherapyId" parameterType="int" resultMap="case">
+        SELECT
+        case_id, therapy_id, casePath
+        FROM t_case
+        WHERE
+        therapy_id = #{0}
+    </select>
+</mapper>
