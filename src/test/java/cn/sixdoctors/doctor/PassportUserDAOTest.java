@@ -23,6 +23,8 @@ public class PassportUserDAOTest {
     public void insert() {
         PassportUser user = new PassportUser();
         user.setUserName("deven");
+        user.setRoleId(101);
+        user.setUserDetailId(1);
         userDAO.insert(user);
     }
 
