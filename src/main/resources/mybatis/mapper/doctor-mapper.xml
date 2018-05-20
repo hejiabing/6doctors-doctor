@@ -14,21 +14,37 @@
         t_doctor
         (doctor_name, hospital_name, depart_name)
         VALUES
-        (#{doctor_name}, #{hospital_name}, #{depart_name})
+        (#{doctorName}, #{hospitalName}, #{departName})
     </insert>
 
-    <select id="findByDoctorId" parameterType="int" resultType="cn.sixdoctors.doctor.model.Doctor">
+    <select id="findByDoctorId" parameterType="int" resultMap="doctor">
         SELECT doctor_id, doctor_name, hospital_name, depart_name
         FROM t_doctor
         WHERE
-        doctor_id = #{0}
+        doctor_id = #{doctorId}
     </select>
 
-    <select id="findByDoctorName" parameterType="string" resultType="doctor">
+    <select id="findByDoctorName" parameterType="string" resultMap="doctor">
         SELECT doctor_id, doctor_name, hospital_name, depart_name
         FROM t_doctor
         WHERE
-        doctor_id LIKE #{0}
+        doctor_name LIKE CONCAT('%',#{0},'%')
+    </select>
+
+    <select id="findBySearch" parameterType="map" resultMap="doctor">
+        SELECT doctor_id, doctor_name, hospital_name, depart_name
+        FROM t_doctor
+        <where>
+            <if test="hospitalName != null and hospitalName != ''">
+                hospital_name LIKE #{hospitalName}
+            </if>
+            <if test="departName != null and departName != ''">
+                AND depart_name LIKE #{departName}
+            </if>
+            <if test="doctorName != null and doctorName != ''">
+                AND doctor_name LIKE CONCAT('%',#{doctorName},'%')
+            </if>
+        </where>
     </select>
 
 </mapper>

@@ -12,7 +12,7 @@ import java.util.Map;
 public interface NurseDAO {
     void insert(Nurse nurse);
 
-    Nurse findByDoctorId(int nurseId);
+    Nurse findByNurseId(int nurseId);
 
     List<Nurse> findByNurseName(String nurseName);
 

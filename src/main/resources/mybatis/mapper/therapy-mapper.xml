@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.sixdoctors.doctor.dao.TherapyDAO">
+    <resultMap id="therapy" type="cn.sixdoctors.doctor.model.Therapy">
+        <id column="therapy_id" property="therapyId" jdbcType="INTEGER"/>
+        <result column="doctor_id" property="doctorId" jdbcType="INTEGER"/>
+        <result column="patient_id" property="patientId" jdbcType="INTEGER"/>
+        <result column="state" property="state" jdbcType="VARCHAR"/>
+        <result column="date" property="date" jdbcType="TIMESTAMP"/>
+        <result column="record" property="record" jdbcType="BLOB"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="cn.sixdoctors.doctor.model.Therapy" useGeneratedKeys="true"
+            keyProperty="therapy_id">
+        INSERT INTO
+        t_therapy
+        (doctor_id, patient_id, state, date, record)
+        VALUES
+        (#{doctorId}, #{patientId}, #{state}, #{date}, #{record})
+    </insert>
+
+    <select id="findByDoctorId" parameterType="int" resultMap="therapy">
+        SELECT therapy_id, doctor_id, patient_id, state, date, record
+        FROM t_therapy
+        WHERE
+        doctor_id = #{doctorId}
+    </select>
+
+    <select id="findById" parameterType="int" resultMap="therapy">
+        SELECT therapy_id, doctor_id, patient_id, state, date, record
+        FROM t_therapy
+        WHERE
+        therapy_id = #{therapy_Id}
+    </select>
+
+    <select id="findByPatientId" parameterType="int" resultMap="therapy">
+        SELECT therapy_id, doctor_id, patient_id, state, date, record
+        FROM t_therapy
+        WHERE
+        patient_id = #{patient_Id}
+    </select>
+
+</mapper>

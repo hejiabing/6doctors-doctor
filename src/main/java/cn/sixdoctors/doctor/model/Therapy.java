@@ -11,7 +11,7 @@ public class Therapy {
     private int patientId;
     private String state;
     private Date date;
-    private String recode;
+    private String record;
 
     public int getTherapyId() {
         return therapyId;
@@ -53,12 +53,12 @@ public class Therapy {
         this.date = date;
     }
 
-    public String getRecode() {
-        return recode;
+    public String getRecord() {
+        return record;
     }
 
-    public void setRecode(String recode) {
-        this.recode = recode;
+    public void setRecord(String record) {
+        this.record = record;
     }
 
     @Override
@@ -69,7 +69,7 @@ public class Therapy {
                 ", patientId=" + patientId +
                 ", state='" + state + '\'' +
                 ", date=" + date +
-                ", recode='" + recode + '\'' +
+                ", record='" + record + '\'' +
                 '}';
     }
 }
