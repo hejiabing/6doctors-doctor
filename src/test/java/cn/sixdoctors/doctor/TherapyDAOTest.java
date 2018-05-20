@@ -47,5 +47,16 @@ public class TherapyDAOTest {
         System.out.println(therapyDAO.findByPatientId(1));
     }
 
+    @Test
+    public void update() {
+        Therapy therapy = new Therapy();
+        therapy.setDoctorId(1);
+        therapy.setPatientId(1);
+        therapy.setState("update");
+        therapy.setDate(new Date());
+        therapy.setRecord("记录");
+        therapy.setTherapyId(1);
+        therapyDAO.update(therapy);
+    }
 
 }

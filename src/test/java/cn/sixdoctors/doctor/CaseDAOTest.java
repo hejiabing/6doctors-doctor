@@ -50,4 +50,13 @@ public class CaseDAOTest {
         List<Case> cases = caseDAO.selectByTherapyId(123456);
         System.out.println(cases);
     }
+
+    @Test
+    public void update() {
+        Case ca = new Case();
+        ca.setCaseId(1);
+        ca.setTherapyId(123456);
+        ca.setCasePath("/home/deven/update.img");
+        caseDAO.update(ca);
+    }
 }

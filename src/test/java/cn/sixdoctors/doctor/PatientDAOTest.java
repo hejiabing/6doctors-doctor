@@ -32,7 +32,6 @@ public class PatientDAOTest {
         patient.setMobPhone("15500000000");
         patient.setPhotoPath("/usr/local/");
         patient.setPlace("地点");
-
         patientDAO.insert(patient);
     }
 
@@ -51,5 +50,20 @@ public class PatientDAOTest {
         System.out.println(patientDAO.findByMobPhone("15500000000"));
     }
 
+    @Test
+    public void update() {
+        Patient patient = new Patient();
+        patient.setPatientName("赵病人");
+        patient.setAddress("地址");
+        patient.setAge(18);
+        patient.setGender("男");
+        patient.setIdentityNum("420684100000000000");
+        patient.setIdentityType("身份证");
+        patient.setMobPhone("15500000000");
+        patient.setPhotoPath("/usr/local/");
+        patient.setPlace("update");
+        patient.setPatientId(1);
+        patientDAO.update(patient);
+    }
 
 }

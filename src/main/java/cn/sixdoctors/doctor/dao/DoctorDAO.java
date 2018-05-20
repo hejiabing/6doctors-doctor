@@ -17,4 +17,6 @@ public interface DoctorDAO {
     List<Doctor> findByDoctorName(String doctorName);
 
     List<Doctor> findBySearch(Map<String, String> params);
+
+    void update(Doctor doctor);
 }

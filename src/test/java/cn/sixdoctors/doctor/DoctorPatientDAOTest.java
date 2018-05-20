@@ -50,4 +50,16 @@ public class DoctorPatientDAOTest {
     public void findByDoctorName() {
         System.out.println(doctorPatientDAO.findByDoctorName("赵医生"));
     }
+
+    @Test
+    public void update() {
+        DoctorPatient doctorPatient = new DoctorPatient();
+        doctorPatient.setDoctorId(1);
+        doctorPatient.setPatientId(1);
+        doctorPatient.setDoctorName("赵医生");
+        doctorPatient.setPatientName("赵病人");
+        doctorPatient.setStatus("update");
+        doctorPatient.setDoctorPatientId(1);
+        doctorPatientDAO.update(doctorPatient);
+    }
 }

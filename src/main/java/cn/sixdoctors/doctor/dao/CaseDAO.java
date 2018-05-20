@@ -14,4 +14,6 @@ public interface CaseDAO {
     int insertAll(List<Case> cases);
 
     List<Case> selectByTherapyId(int therapyId);
+
+    void update(Case ca);
 }

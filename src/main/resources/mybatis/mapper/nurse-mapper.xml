@@ -47,4 +47,19 @@
         </where>
     </select>
 
+    <update id="update" parameterType="cn.sixdoctors.doctor.model.Nurse">
+        UPDATE t_nurse
+        <set>
+            <if test="nurseName != null and nurseName != ''">
+                nurse_name = #{nurseName},
+            </if>
+            <if test="hospitalName != null and hospitalName != ''">
+                hospital_name = #{hospitalName},
+            </if>
+            <if test="departName != null and departName != ''">
+                depart_name = #{departName},
+            </if>
+        </set>
+        WHERE nurse_id = #{nurseId}
+    </update>
 </mapper>

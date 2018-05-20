@@ -35,4 +35,15 @@
         WHERE
         therapy_id = #{0}
     </select>
+
+    <update id="update" parameterType="cn.sixdoctors.doctor.model.Case">
+        UPDATE t_case
+        <set>
+            <if test="casePath != null and casePath != ''">
+                casePath = #{casePath}
+            </if>
+        </set>
+        WHERE
+        therapy_id = #{therapyId} AND case_id = #{caseId}
+    </update>
 </mapper>

@@ -47,5 +47,26 @@
         patient_name LIKE CONCAT('%',#{0},'%')
     </select>
 
+    <update id="update" parameterType="cn.sixdoctors.doctor.model.DoctorPatient">
+        UPDATE t_doctor_patient
+        <set>
+            <if test="doctorId != 0">
+                doctor_id = #{doctorId},
+            </if>
+            <if test="patientId != 0">
+                patient_id = #{patientId},
+            </if>
+            <if test="doctorName != null and doctorName != ''">
+                doctor_name = #{doctorName},
+            </if>
+            <if test="patientName != null and patientName != ''">
+                patient_name = #{patientName},
+            </if>
+            <if test="status != null and status != ''">
+                status = #{status},
+            </if>
+        </set>
+        WHERE doc_patient_id = #{doctorPatientId}
+    </update>
 
 </mapper>

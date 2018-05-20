@@ -45,5 +45,14 @@ public class NurseDAOTest {
 
     }
 
+    @Test
+    public void update() {
+        Nurse nurse = new Nurse();
+        nurse.setNurseName("赵护士");
+        nurse.setHospitalName("第一医院");
+        nurse.setDepartName("update");
+        nurse.setNurseId(1);
+        nurseDAO.update(nurse);
+    }
 
 }

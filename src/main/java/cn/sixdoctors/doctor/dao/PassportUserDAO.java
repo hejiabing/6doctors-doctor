@@ -14,4 +14,6 @@ public interface PassportUserDAO {
 
     PassportUser findByMobile(String mobile);
 
+    void update(PassportUser user);
+
 }
