@@ -1,12 +1,14 @@
 package cn.sixdoctors.doctor.controller;
 
+import cn.sixdoctors.doctor.model.Doctor;
+import cn.sixdoctors.doctor.vo.Captcha;
+import cn.sixdoctors.doctor.vo.Login;
 import cn.sixdoctors.doctor.vo.VO;
 import cn.sixdoctors.doctor.wrapper.LoginWrapper;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.io.IOException;
 import java.util.Map;
 
 /**
@@ -14,20 +16,21 @@ import java.util.Map;
  */
 
 @RestController
+@RequestMapping("/api")
 public class LoginController {
 
     @Resource
     private LoginWrapper loginWrapper;
 
-//    @RequestMapping("/doctor/login")
-//    public VO validateUser(@RequestBody Map<String, Object> params) {
-//        String username = params.get("username").toString();
-//        String password = params.get("password").toString();
-//        User user = new User();
-//        user.setUsername(username);
-//        user.setPassword(password);
-//
-//        return VO.SUCCESS;
-//    }
+
+    @GetMapping("/captcha")
+    public VO<Captcha> getCaptcha() throws IOException {
+        return loginWrapper.getCaptcha();
+    }
+
+    @PostMapping("/login")
+    public VO<Login> login(@RequestBody Map<String, Object> params) {
+        return loginWrapper.login(params);
+    }
 
 }
