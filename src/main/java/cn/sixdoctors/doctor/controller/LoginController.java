@@ -29,8 +29,8 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    public VO<Login> login(@RequestBody Map<String, Object> params) {
-        return loginWrapper.login(params);
+    public VO<Login> login(@RequestParam String account, @RequestParam String password) {
+        return loginWrapper.login(account, password);
     }
 
 }
