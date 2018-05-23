@@ -16,7 +16,13 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(UnauthorizedException.class)
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
     public void unauthorized(UnauthorizedException e, HttpServletResponse response) {
-        tryCatch(VO.INVALID_PARAMS, response);
+        tryCatch(VO.PASSWORD_ERROR, response);
+    }
+
+    @ExceptionHandler(NotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public void notFound(NotFoundException e, HttpServletResponse response) {
+        tryCatch(VO.ACCOUNT_NOT_FOUND, response);
     }
 
     private void tryCatch(VO result, HttpServletResponse response) {

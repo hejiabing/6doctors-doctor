@@ -27,9 +27,7 @@ public class LoginWrapper {
         return new VO<>(captcha);
     }
 
-    public VO<Login> login(Map<String, Object> params) {
-        String account = (String) params.get("account");
-        String password = (String) params.get("password");
+    public VO<Login> login(String account, String password) {
         if (account == null || password == null) {
             throw new UnauthorizedException(PASSWORD_ERROR);
         } else {
