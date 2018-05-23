@@ -7,7 +7,7 @@
         <result column="casePath" property="casePath" jdbcType="VARCHAR"/>
     </resultMap>
 
-    <insert id="insert" parameterType="cn.sixdoctors.doctor.model.Case" useGeneratedKeys="true" keyProperty="case_id">
+    <insert id="insert" parameterType="cn.sixdoctors.doctor.model.Case" useGeneratedKeys="true" keyProperty="caseId">
         INSERT INTO
         t_case
         (therapy_id, casePath)
@@ -15,7 +15,7 @@
         (#{therapyId}, #{casePath})
     </insert>
 
-    <insert id="insertAll" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="case_id">
+    <insert id="insertAll" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="caseId">
         INSERT INTO
         t_case
         (therapy_id, casePath)
