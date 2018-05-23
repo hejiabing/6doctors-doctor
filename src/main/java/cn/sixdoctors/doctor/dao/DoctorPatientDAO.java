@@ -9,7 +9,7 @@ import java.util.List;
  */
 public interface DoctorPatientDAO {
 
-    void insert(DoctorPatient doctorPatient);
+    int insert(DoctorPatient doctorPatient);
 
     List<DoctorPatient> findByDoctorId(int doctorId);
 
@@ -19,6 +19,6 @@ public interface DoctorPatientDAO {
 
     List<DoctorPatient> findByDoctorName(String doctorName);
 
-    void update(DoctorPatient doctorPatient);
+    int update(DoctorPatient doctorPatient);
 
 }

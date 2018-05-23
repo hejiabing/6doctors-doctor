@@ -10,7 +10,7 @@ import java.util.Map;
  * Created by wangpengcheng on 2018/5/20.
  */
 public interface NurseDAO {
-    void insert(Nurse nurse);
+    int insert(Nurse nurse);
 
     Nurse findByNurseId(int nurseId);
 
@@ -18,5 +18,5 @@ public interface NurseDAO {
 
     List<Nurse> findBySearch(Map<String, String> params);
 
-    void update(Nurse nurse);
+    int update(Nurse nurse);
 }

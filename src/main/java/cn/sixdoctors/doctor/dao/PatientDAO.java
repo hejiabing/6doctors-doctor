@@ -11,7 +11,7 @@ import java.util.Map;
  */
 public interface PatientDAO {
 
-    void insert(Patient patient);
+    int insert(Patient patient);
 
     Patient findByPatientId(int patientId);
 
@@ -19,6 +19,6 @@ public interface PatientDAO {
 
     Patient findByMobPhone(String mobPhone);
 
-    void update(Patient patient);
+    int update(Patient patient);
 
 }
