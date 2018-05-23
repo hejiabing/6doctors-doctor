@@ -8,9 +8,9 @@ import java.util.List;
  * Created by wangpengcheng on 2018/5/20.
  */
 public interface DepartmentDAO {
-    void insert(Department department);
+    int insert(Department department);
 
-    void insertAll(List<Department> departments);
+    int insertAll(List<Department> departments);
 
     List<Department> selectAll();
 }

@@ -10,7 +10,7 @@ import java.util.Map;
  * Created by wangpengcheng on 2018/5/20.
  */
 public interface TherapyDAO {
-    void insert(Therapy therapy);
+    int insert(Therapy therapy);
 
     List<Therapy> findByDoctorId(int doctorId);
 
@@ -18,6 +18,6 @@ public interface TherapyDAO {
 
     List<Therapy> findByPatientId(int PatientId);
 
-    void update(Therapy therapy);
+    int update(Therapy therapy);
 
 }

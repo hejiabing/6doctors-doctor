@@ -10,9 +10,9 @@ import java.util.List;
  */
 public interface HospitalDAO {
 
-    void insert(Hospital hospital);
+    int insert(Hospital hospital);
 
-    void insertAll(List<Hospital> hospitals);
+    int insertAll(List<Hospital> hospitals);
 
     List<Hospital> selectAll();
 

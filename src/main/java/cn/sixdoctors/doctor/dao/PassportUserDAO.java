@@ -6,7 +6,7 @@ import cn.sixdoctors.doctor.model.PassportUser;
  * Created by wangpengcheng on 2018/5/20.
  */
 public interface PassportUserDAO {
-    void insert(PassportUser passportUser);
+    int insert(PassportUser passportUser);
 
     PassportUser findByUserId(int userId);
 
@@ -14,6 +14,6 @@ public interface PassportUserDAO {
 
     PassportUser findByMobile(String mobile);
 
-    void update(PassportUser user);
+    int update(PassportUser user);
 
 }

@@ -15,5 +15,5 @@ public interface CaseDAO {
 
     List<Case> selectByTherapyId(int therapyId);
 
-    void update(Case ca);
+    int update(Case ca);
 }

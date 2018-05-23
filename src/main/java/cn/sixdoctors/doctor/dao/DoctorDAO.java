@@ -10,7 +10,7 @@ import java.util.Map;
  */
 public interface DoctorDAO {
 
-    void insert(Doctor doctor);
+    int insert(Doctor doctor);
 
     Doctor findByDoctorId(int doctorId);
 
@@ -18,5 +18,5 @@ public interface DoctorDAO {
 
     List<Doctor> findBySearch(Map<String, String> params);
 
-    void update(Doctor doctor);
+    int update(Doctor doctor);
 }

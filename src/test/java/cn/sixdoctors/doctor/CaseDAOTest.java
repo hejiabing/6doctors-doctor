@@ -34,7 +34,7 @@ public class CaseDAOTest {
         ca1.setTherapyId(123456);
         ca1.setCasePath("/home/deven/index2.img");
         cases.add(ca1);
-        caseDAO.insertAll(cases);
+        System.out.println(caseDAO.insertAll(cases));
     }
 
     @Test
@@ -42,7 +42,8 @@ public class CaseDAOTest {
         Case ca = new Case();
         ca.setTherapyId(123456);
         ca.setCasePath("/home/deven/index.img");
-        caseDAO.insert(ca);
+
+        System.out.println(caseDAO.insert(ca));
     }
 
     @Test
@@ -57,6 +58,6 @@ public class CaseDAOTest {
         ca.setCaseId(1);
         ca.setTherapyId(123456);
         ca.setCasePath("/home/deven/update.img");
-        caseDAO.update(ca);
+        System.out.println(caseDAO.update(ca));
     }
 }
