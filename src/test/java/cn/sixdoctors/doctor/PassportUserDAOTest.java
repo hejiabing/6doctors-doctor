@@ -47,7 +47,8 @@ public class PassportUserDAOTest {
     public void update() {
         PassportUser user = new PassportUser();
         user.setUserName("deven");
-        user.setMobile("update");
+        user.setMobile("15171501841");
+        user.setPassword("123456");
         user.setUserId(1);
         userDAO.update(user);
     }
