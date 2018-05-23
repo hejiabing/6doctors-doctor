@@ -35,6 +35,8 @@ public class CaseDAOTest {
         ca1.setCasePath("/home/deven/index2.img");
         cases.add(ca1);
         System.out.println(caseDAO.insertAll(cases));
+        System.out.println(cases);
+
     }
 
     @Test
@@ -44,6 +46,7 @@ public class CaseDAOTest {
         ca.setCasePath("/home/deven/index.img");
 
         System.out.println(caseDAO.insert(ca));
+        System.out.println(ca);
     }
 
     @Test
@@ -55,7 +58,7 @@ public class CaseDAOTest {
     @Test
     public void update() {
         Case ca = new Case();
-        ca.setCaseId(1);
+        ca.setCaseId(22);
         ca.setTherapyId(123456);
         ca.setCasePath("/home/deven/update.img");
         System.out.println(caseDAO.update(ca));

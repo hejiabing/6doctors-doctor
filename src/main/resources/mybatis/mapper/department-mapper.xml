@@ -7,7 +7,7 @@
     </resultMap>
 
     <insert id="insert" parameterType="cn.sixdoctors.doctor.model.Department" useGeneratedKeys="true"
-            keyProperty="department_id">
+            keyProperty="departmentId">
         INSERT INTO
         t_department
         (department_name)
@@ -15,7 +15,7 @@
         (#{departmentName})
     </insert>
 
-    <insert id="insertAll" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="department_id">
+    <insert id="insertAll" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="departmentId">
         INSERT INTO
         t_department
         (department_name)

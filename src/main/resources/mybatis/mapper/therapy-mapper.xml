@@ -11,7 +11,7 @@
     </resultMap>
 
     <insert id="insert" parameterType="cn.sixdoctors.doctor.model.Therapy" useGeneratedKeys="true"
-            keyProperty="therapy_id">
+            keyProperty="therapyId">
         INSERT INTO
         t_therapy
         (doctor_id, patient_id, state, date, record)

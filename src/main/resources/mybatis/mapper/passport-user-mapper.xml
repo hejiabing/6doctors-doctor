@@ -30,7 +30,7 @@
     </sql>
 
     <insert id="insert" parameterType="cn.sixdoctors.doctor.model.PassportUser" useGeneratedKeys="true"
-            keyProperty="user_id">
+            keyProperty="userId">
         INSERT INTO
         t_passport_user
         (user_name,password,status,role_id,enter_count,last_login_time,register_ip,last_login_ip,user_detail_id,is_delete,

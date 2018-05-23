@@ -9,7 +9,7 @@
     </resultMap>
 
     <insert id="insert" parameterType="cn.sixdoctors.doctor.model.Doctor" useGeneratedKeys="true"
-            keyProperty="doctor_id">
+            keyProperty="doctorId">
         INSERT INTO
         t_doctor
         (doctor_name, hospital_name, depart_name)
