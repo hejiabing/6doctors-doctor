@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="cn.sixdoctors.doctor.dao.DoctorPatientDAO">
     <resultMap id="doctorPatient" type="cn.sixdoctors.doctor.model.DoctorPatient">
-        <id column="doctor_patient_id" property="doctorPatientId" jdbcType="INTEGER"/>
+        <id column="doc_patient_id" property="doctorPatientId" jdbcType="INTEGER"/>
         <result column="doctor_id" property="doctorId" jdbcType="INTEGER"/>
         <result column="patient_id" property="patientId" jdbcType="INTEGER"/>
         <result column="doctor_name" property="doctorName" jdbcType="VARCHAR"/>

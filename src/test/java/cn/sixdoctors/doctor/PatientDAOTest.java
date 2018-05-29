@@ -33,6 +33,7 @@ public class PatientDAOTest {
         patient.setPhotoPath("/usr/local/");
         patient.setPlace("地点");
         patientDAO.insert(patient);
+        System.out.println(patient);
     }
 
     @Test
