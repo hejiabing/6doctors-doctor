@@ -14,5 +14,15 @@ public class FileUtils {
         out.flush();
         out.close();
     }
+
+    public static String randomName(int uid, String originName) {
+        String lx = originName.substring(originName.lastIndexOf("."));
+        long time = System.currentTimeMillis();
+        return uid + time + lx;
+    }
+
+    public static String getFileName(String originName) {
+        return originName.substring(0, originName.lastIndexOf("."));
+    }
 }
 

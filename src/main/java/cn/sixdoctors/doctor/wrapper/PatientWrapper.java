@@ -1,6 +1,7 @@
 package cn.sixdoctors.doctor.wrapper;
 
 import cn.sixdoctors.doctor.model.DoctorPatient;
+import cn.sixdoctors.doctor.model.PassportUser;
 import cn.sixdoctors.doctor.model.Patient;
 import cn.sixdoctors.doctor.service.PatientService;
 import cn.sixdoctors.doctor.util.FileUtils;
@@ -27,21 +28,13 @@ public class PatientWrapper {
         return new VO<>(patientService.getPatient(patientId));
     }
 
-    public VO<Patient> createPatient(MultipartFile[] photos,
-                                     String patientName,
-                                     String gender,
-                                     String mobPhone,
-                                     int age,
-                                     String identityType,
-                                     String identityNum,
-                                     String address,
-                                     String place) throws IOException {
+    public VO<Patient> createPatient(PassportUser user, MultipartFile photo, String patientName, String gender, String mobPhone,
+                                     int age, String identityType, String identityNum, String address, String place) throws IOException {
         StringBuilder builder = new StringBuilder();
-        for (int i = 0; i < photos.length; i++) {
-            //todo 更改照片名字，确保不冲突
-            FileUtils.uploadFile(photos[i].getBytes(), "/data/doctor/", photos[i].getOriginalFilename());
-            builder.append("/data/doctor/" + photos[i].getOriginalFilename() + ";");
-        }
+        String fileName = FileUtils.randomName(user.getUserId(), photo.getOriginalFilename());
+        FileUtils.uploadFile(photo.getBytes(), "/data/doctor/avatar/", fileName);
+        builder.append("http://api.6doctors.cn/data/doctor/avatar/").append(fileName);
+
         Patient patient = new Patient();
         patient.setPatientName(patientName);
         patient.setGender(gender);
@@ -52,10 +45,27 @@ public class PatientWrapper {
         patient.setAddress(address);
         patient.setPlace(place);
         patient.setPhotoPath(builder.toString());
-        return new VO<>(patientService.createPatient(patient));
+        return new VO<>(patientService.createPatient(user, patient));
     }
 
-    public VO<Patient> updatePatient(Patient patient) {
+    public VO<Patient> updatePatient(PassportUser user, MultipartFile photo,int patientId, String patientName, String gender, String mobPhone, int age,
+                                     String identityType, String identityNum, String address, String place) throws IOException {
+        StringBuilder builder = new StringBuilder();
+        String fileName = FileUtils.randomName(user.getUserId(), photo.getOriginalFilename());
+        FileUtils.uploadFile(photo.getBytes(), "/data/doctor/avatar/", fileName);
+        builder.append("http://api.6doctors.cn/data/doctor/avatar/").append(fileName);
+
+        Patient patient = new Patient();
+        patient.setPatientId(patientId);
+        patient.setPatientName(patientName);
+        patient.setGender(gender);
+        patient.setMobPhone(mobPhone);
+        patient.setAge(age);
+        patient.setIdentityType(identityType);
+        patient.setIdentityNum(identityNum);
+        patient.setAddress(address);
+        patient.setPlace(place);
+        patient.setPhotoPath(builder.toString());
         return new VO<>(patientService.updatePatient(patient));
     }
 }
