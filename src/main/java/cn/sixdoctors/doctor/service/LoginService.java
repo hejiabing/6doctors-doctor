@@ -8,6 +8,7 @@ import cn.sixdoctors.doctor.exception.NotFoundException;
 import cn.sixdoctors.doctor.exception.UnauthorizedException;
 import cn.sixdoctors.doctor.model.PassportUser;
 import cn.sixdoctors.doctor.util.CaptchaUtil;
+import cn.sixdoctors.doctor.util.JedisUtils;
 import cn.sixdoctors.doctor.util.TokenUtil;
 import cn.sixdoctors.doctor.vo.Login;
 import cn.sixdoctors.doctor.vo.VO;
@@ -53,11 +54,12 @@ public class LoginService {
             user = userDAO.findByUserName(account);
         }
         if (user == null) {
-            throw new NotFoundException(ACCOUNT_NOT_FOUND);
+            throw new UnauthorizedException(ACCOUNT_NOT_FOUND);
         } else if (!user.getPassword().equals(password)){
             throw new UnauthorizedException(PASSWORD_ERROR);
         } else {
             String token = TokenUtil.genToken(String.valueOf(user.getUserId()));
+            JedisUtils.set(token, String.valueOf(user.getUserId()));
             Login<Object> login = new Login<>();
             login.setToken(token);
             switch (user.getRoleId()) {

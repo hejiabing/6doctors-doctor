@@ -2,16 +2,13 @@ package cn.sixdoctors.doctor.vo;
 
 import cn.sixdoctors.doctor.exception.ExceptionMsg;
 
-/**
- * Created by wpc on 2017/5/19.
- */
+
 public class VO<T extends Object> {
 
     public static final VO SUCCESS = new VO<>(null);
 
     //    用户级
-    public static final VO WRONG_UID_PSWD = new VO<>(1001, "wrong_uid_pswd", null);
-    public static final VO INVALID_TOKEN = new VO<>(401, "invalid_token", null);
+    public static final VO INVALID_TOKEN = new VO<>(401, ExceptionMsg.INVALID_TOKEN, null);
     public static final VO PASSWORD_ERROR = new VO<>(401, ExceptionMsg.PASSWORD_ERROR, null);
     public static final VO ACCOUNT_NOT_FOUND = new VO<>(401, ExceptionMsg.ACCOUNT_NOT_FOUND, null);
 

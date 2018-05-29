@@ -1,7 +1,7 @@
 package cn.sixdoctors.doctor.config;
 
 import cn.sixdoctors.doctor.interceptor.CrossFieldInterceptor;
-import cn.sixdoctors.doctor.interceptor.LoginInterceptor;
+import cn.sixdoctors.doctor.interceptor.AuthInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -11,9 +11,9 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class BeansInitializer {
 
-    @Bean(name = "LoginInterceptor")
-    public LoginInterceptor loginInterceptor() {
-        return new LoginInterceptor();
+    @Bean(name = "AuthInterceptor")
+    public AuthInterceptor tokenInterceptor() {
+        return new AuthInterceptor();
     }
 
     @Bean

@@ -1,10 +1,8 @@
 package cn.sixdoctors.doctor.config;
 
 import cn.sixdoctors.doctor.interceptor.CrossFieldInterceptor;
-import cn.sixdoctors.doctor.interceptor.LoginInterceptor;
-import org.springframework.beans.factory.annotation.Autowired;
+import cn.sixdoctors.doctor.interceptor.AuthInterceptor;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.Ordered;
 import org.springframework.web.servlet.config.annotation.*;
 
 import javax.annotation.Resource;
@@ -16,7 +14,7 @@ import javax.annotation.Resource;
 public class MyWebMvcConfigurer extends WebMvcConfigurerAdapter {
 
     @Resource
-    private LoginInterceptor loginInterceptor;
+    private AuthInterceptor authInterceptor;
 
     @Resource
     private CrossFieldInterceptor crossFieldInterceptor;
@@ -24,9 +22,9 @@ public class MyWebMvcConfigurer extends WebMvcConfigurerAdapter {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
 
-        registry.addInterceptor(loginInterceptor).addPathPatterns("/doctor/*");
-//        registry.addInterceptor(loginInterceptor).addPathPatterns("/admin/*");
-//        registry.addInterceptor(loginInterceptor).addPathPatterns("/*");
+        registry.addInterceptor(authInterceptor).addPathPatterns("/api/*");
+//        registry.addInterceptor(authInterceptor).addPathPatterns("/admin/*");
+//        registry.addInterceptor(authInterceptor).addPathPatterns("/*");
         registry.addInterceptor(crossFieldInterceptor);
 
         super.addInterceptors(registry);

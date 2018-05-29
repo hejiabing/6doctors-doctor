@@ -7,6 +7,8 @@ import redis.clients.jedis.JedisPoolConfig;
 public class JedisUtils {
     private static JedisPool pool = null;
 
+    private static int MONTH_SECONDS = 30 * 24 * 60 * 60;
+
     static {
         if (pool == null) {
             JedisPoolConfig config = new JedisPoolConfig();
@@ -27,7 +29,7 @@ public class JedisUtils {
 
     public static void set(String key, String value) {
         Jedis jedis = pool.getResource();
-        jedis.setex(key, 3600 * 24 * 30, value);
+        jedis.setex(key, MONTH_SECONDS, value);
         jedis.close();
     }
 
@@ -40,6 +42,18 @@ public class JedisUtils {
     public static void delete(String key) {
         Jedis jedis = pool.getResource();
         jedis.del(key);
+        jedis.close();
+    }
+
+    public static void expire(String key) {
+        Jedis jedis = pool.getResource();
+        jedis.expire(key, MONTH_SECONDS);
+        jedis.close();
+    }
+
+    public static void expire(String key, int exp) {
+        Jedis jedis = pool.getResource();
+        jedis.expire(key, exp);
         jedis.close();
     }
 }
