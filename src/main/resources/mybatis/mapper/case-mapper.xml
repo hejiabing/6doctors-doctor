@@ -46,4 +46,13 @@
         WHERE
         therapy_id = #{therapyId} AND case_id = #{caseId}
     </update>
+
+    <delete id="deleteByCaseId" parameterType="int">
+        DELETE FROM t_case WHERE case_id = #{caseId}
+    </delete>
+
+    <delete id="deleteByTherapyId" parameterType="int">
+        DELETE FROM t_case WHERE therapy_id = #{therapyId}
+    </delete>
+
 </mapper>

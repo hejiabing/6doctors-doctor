@@ -63,4 +63,10 @@ public class CaseDAOTest {
         ca.setCasePath("/home/deven/update.img");
         System.out.println(caseDAO.update(ca));
     }
+
+
+    @Test
+    public void delete() {
+        System.out.println(caseDAO.deleteByCaseId(22));
+    }
 }
