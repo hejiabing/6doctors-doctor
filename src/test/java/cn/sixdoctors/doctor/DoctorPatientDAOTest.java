@@ -33,7 +33,7 @@ public class DoctorPatientDAOTest {
 
     @Test
     public void findByDoctorId() {
-        System.out.println(doctorPatientDAO.findByDoctorId(1));
+        System.out.println(doctorPatientDAO.findByDoctorId(2));
     }
 
     @Test
