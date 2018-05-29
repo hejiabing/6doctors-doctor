@@ -33,7 +33,7 @@ public class PatientWrapper {
         StringBuilder builder = new StringBuilder();
         String fileName = FileUtils.randomName(user.getUserId(), photo.getOriginalFilename());
         FileUtils.uploadFile(photo.getBytes(), "/data/doctor/avatar/", fileName);
-        builder.append("http://api.6doctors.cn/data/doctor/avatar/").append(fileName);
+        builder.append("http://api.6doctors.cn/avatar/").append(fileName);
 
         Patient patient = new Patient();
         patient.setPatientName(patientName);
@@ -53,7 +53,7 @@ public class PatientWrapper {
         StringBuilder builder = new StringBuilder();
         String fileName = FileUtils.randomName(user.getUserId(), photo.getOriginalFilename());
         FileUtils.uploadFile(photo.getBytes(), "/data/doctor/avatar/", fileName);
-        builder.append("http://api.6doctors.cn/data/doctor/avatar/").append(fileName);
+        builder.append("http://api.6doctors.cn/avatar/").append(fileName);
 
         Patient patient = new Patient();
         patient.setPatientId(patientId);

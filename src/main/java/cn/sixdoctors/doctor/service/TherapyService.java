@@ -55,7 +55,7 @@ public class TherapyService {
             c.setTherapyId(therapy.getTherapyId());
             String fileName = FileUtils.randomName(therapy.getTherapyId(), photo.getOriginalFilename());
             FileUtils.uploadFile(photo.getBytes(), "/data/doctor/cases/", fileName);
-            c.setCasePath("http://api.6doctors.cn/data/doctor/cases/" + fileName);
+            c.setCasePath("http://api.6doctors.cn/cases/" + fileName);
             cases.add(c);
             caseDAO.insert(c);
         }
@@ -71,7 +71,7 @@ public class TherapyService {
             c.setTherapyId(therapy.getTherapyId());
             String fileName = FileUtils.randomName(therapy.getTherapyId(), photo.getOriginalFilename());
             FileUtils.uploadFile(photo.getBytes(), "/data/doctor/cases/", fileName);
-            c.setCasePath("http://api.6doctors.cn/data/doctor/cases/" + fileName);
+            c.setCasePath("http://api.6doctors.cn/cases/" + fileName);
             cases.add(c);
             caseDAO.update(c);
         }
