@@ -42,8 +42,8 @@ public class CaseDAOTest {
     @Test
     public void insert() {
         Case ca = new Case();
-        ca.setTherapyId(123456);
-        ca.setCasePath("/home/deven/index.img");
+        ca.setTherapyId(2);
+        ca.setCasePath("http://api.6doctors.cn/avatar/1527766004453.png");
 
         System.out.println(caseDAO.insert(ca));
         System.out.println(ca);
