@@ -10,7 +10,9 @@ import java.util.List;
 public class TherapyVO {
     private int therapyId;
     private int doctorId;
+    private String doctorName;
     private int patientId;
+    private String patientName;
     private String state;
     private String date;
     private String record;
@@ -19,7 +21,7 @@ public class TherapyVO {
     public TherapyVO() {
     }
 
-    public TherapyVO(Therapy therapy, List<Case> photos) {
+    public TherapyVO(Therapy therapy, List<Case> photos, String doctorName, String patientName) {
         this.therapyId = therapy.getTherapyId();
         this.doctorId = therapy.getDoctorId();
         this.patientId = therapy.getPatientId();
@@ -27,6 +29,8 @@ public class TherapyVO {
         this.date = DateUtils.getDateString(therapy.getDate());
         this.record = therapy.getRecord();
         this.photos = photos;
+        this.doctorName = doctorName;
+        this.patientName = patientName;
     }
 
     public int getTherapyId() {
@@ -85,14 +89,32 @@ public class TherapyVO {
         this.photos = photos;
     }
 
+    public String getDoctorName() {
+        return doctorName;
+    }
+
+    public void setDoctorName(String doctorName) {
+        this.doctorName = doctorName;
+    }
+
+    public String getPatientName() {
+        return patientName;
+    }
+
+    public void setPatientName(String patientName) {
+        this.patientName = patientName;
+    }
+
     @Override
     public String toString() {
         return "TherapyVO{" +
                 "therapyId=" + therapyId +
                 ", doctorId=" + doctorId +
+                ", doctorName='" + doctorName + '\'' +
                 ", patientId=" + patientId +
+                ", patientName='" + patientName + '\'' +
                 ", state='" + state + '\'' +
-                ", date=" + date +
+                ", date='" + date + '\'' +
                 ", record='" + record + '\'' +
                 ", photos=" + photos +
                 '}';

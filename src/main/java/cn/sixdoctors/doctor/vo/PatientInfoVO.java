@@ -1,6 +1,7 @@
 package cn.sixdoctors.doctor.vo;
 
 import cn.sixdoctors.doctor.model.Patient;
+import cn.sixdoctors.doctor.util.DateUtils;
 
 import java.util.List;
 
@@ -17,6 +18,12 @@ public class PatientInfoVO {
     private String place;
     private String avatar;
     private List<TherapyVO> therapies;
+    private String firstTherapyDate;
+    private String firstTherapyDoctor;
+    private String lastTherapyDate;
+    private String lastTherapyDoctor;
+    private String lastStatus;
+    private int therapyCount;
 
     public PatientInfoVO() {
     }
@@ -33,6 +40,10 @@ public class PatientInfoVO {
         this.place = patient.getPlace();
         this.avatar = patient.getPhotoPath();
         this.therapies = therapies;
+        if (therapies.size() != 0) {
+            this.firstTherapyDate = therapies.get(0).getDate();
+//            this.firstTherapyDoctor = therapies.get(0).getDoctorId();
+        }
     }
 
     public int getPatientId() {
@@ -123,6 +134,54 @@ public class PatientInfoVO {
         this.therapies = therapies;
     }
 
+    public String getFirstTherapyDate() {
+        return firstTherapyDate;
+    }
+
+    public void setFirstTherapyDate(String firstTherapyDate) {
+        this.firstTherapyDate = firstTherapyDate;
+    }
+
+    public String getFirstTherapyDoctor() {
+        return firstTherapyDoctor;
+    }
+
+    public void setFirstTherapyDoctor(String firstTherapyDoctor) {
+        this.firstTherapyDoctor = firstTherapyDoctor;
+    }
+
+    public String getLastTherapyDate() {
+        return lastTherapyDate;
+    }
+
+    public void setLastTherapyDate(String lastTherapyDate) {
+        this.lastTherapyDate = lastTherapyDate;
+    }
+
+    public String getLastTherapyDoctor() {
+        return lastTherapyDoctor;
+    }
+
+    public void setLastTherapyDoctor(String lastTherapyDoctor) {
+        this.lastTherapyDoctor = lastTherapyDoctor;
+    }
+
+    public int getTherapyCount() {
+        return therapyCount;
+    }
+
+    public void setTherapyCount(int therapyCount) {
+        this.therapyCount = therapyCount;
+    }
+
+    public String getLastStatus() {
+        return lastStatus;
+    }
+
+    public void setLastStatus(String lastStatus) {
+        this.lastStatus = lastStatus;
+    }
+
     @Override
     public String toString() {
         return "PatientInfoVO{" +
@@ -137,6 +196,12 @@ public class PatientInfoVO {
                 ", place='" + place + '\'' +
                 ", avatar='" + avatar + '\'' +
                 ", therapies=" + therapies +
+                ", firstTherapyDate='" + firstTherapyDate + '\'' +
+                ", firstTherapyDoctor='" + firstTherapyDoctor + '\'' +
+                ", lastTherapyDate='" + lastTherapyDate + '\'' +
+                ", lastTherapyDoctor='" + lastTherapyDoctor + '\'' +
+                ", lastStatus='" + lastStatus + '\'' +
+                ", therapyCount=" + therapyCount +
                 '}';
     }
 }
