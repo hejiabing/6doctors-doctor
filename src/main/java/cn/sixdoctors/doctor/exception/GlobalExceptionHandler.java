@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.text.ParseException;
 
 @ControllerAdvice(annotations = RestController.class)
 public class GlobalExceptionHandler {
@@ -23,6 +25,18 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public void notFound(NotFoundException e, HttpServletResponse response) {
         tryCatch(VO.ACCOUNT_NOT_FOUND, response);
+    }
+
+    @ExceptionHandler(ParseException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public void badRequest(ParseException e, HttpServletResponse response) {
+        tryCatch(VO.TIME_FORMAT_ERROR, response);
+    }
+
+    @ExceptionHandler(IOException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public void badRequest(IOException e, HttpServletResponse response) {
+        tryCatch(VO.IMAGE_WRITE_ERROR, response);
     }
 
     private void tryCatch(VO result, HttpServletResponse response) {
