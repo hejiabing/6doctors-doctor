@@ -11,6 +11,8 @@ public class VO<T extends Object> {
     public static final VO INVALID_TOKEN = new VO<>(401, ExceptionMsg.INVALID_TOKEN, null);
     public static final VO PASSWORD_ERROR = new VO<>(401, ExceptionMsg.PASSWORD_ERROR, null);
     public static final VO ACCOUNT_NOT_FOUND = new VO<>(401, ExceptionMsg.ACCOUNT_NOT_FOUND, null);
+    public static final VO TIME_FORMAT_ERROR = new VO<>(400, ExceptionMsg.TIME_FORMAT_ERROR, null);
+    public static final VO IMAGE_WRITE_ERROR = new VO<>(400, ExceptionMsg.IMAGE_WRITE_ERROR, null);
 
     //////////////////////////////////////////////////////////////////
     private int status;
