@@ -31,9 +31,14 @@ public class PatientController {
         return patientWrapper.getPatient(patientId);
     }
 
+    @GetMapping("/getPatientInfo")
+    public VO<Patient> getPatientInfo(@ApiIgnore @RequestAttribute PassportUser user, @RequestParam String token, @RequestParam int patientId) {
+        return null;
+    }
+
     @PostMapping("/createPatient")
     public VO<Patient> createPatient(@ApiIgnore @RequestAttribute PassportUser user,
-                                     @RequestParam MultipartFile photo,
+                                     @RequestParam(required = false) MultipartFile photo,
                                      @RequestParam String token,
                                      @RequestParam String patientName,
                                      @RequestParam String gender,
@@ -48,7 +53,7 @@ public class PatientController {
 
     @PostMapping("/updatePatient")
     public VO<Patient> updatePatient(@ApiIgnore @RequestAttribute PassportUser user,
-                                     @RequestParam MultipartFile photo,
+                                     @RequestParam(required = false) MultipartFile photo,
                                      @RequestParam String token,
                                      @RequestParam int patientId,
                                      @RequestParam String patientName,
