@@ -33,20 +33,20 @@ public class TherapyController {
     }
 
     @PostMapping("/createTherapy")
-    public VO<TherapyVO> createTherapy(@RequestParam MultipartFile[] photos,
+    public VO<TherapyVO> createTherapy(@RequestParam(required = false) MultipartFile[] photos,
                                      @RequestParam String token,
                                      @RequestParam int doctorId,
                                      @RequestParam int patientId,
                                      @RequestParam String state,
                                      @RequestParam String date,
                                      @RequestParam String record) throws IOException, ParseException {
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         Date d = format.parse(date);
         return therapyWrapper.createTherapy(photos, doctorId, patientId, state, d, record);
     }
 
     @PostMapping("/updateTherapy")
-    public VO<TherapyVO> updateTherapy(@RequestParam MultipartFile[] photos,
+    public VO<TherapyVO> updateTherapy(@RequestParam(required = false) MultipartFile[] photos,
                                        @RequestParam String token,
                                        @RequestParam int therapyId,
                                        @RequestParam int doctorId,
@@ -54,7 +54,7 @@ public class TherapyController {
                                        @RequestParam String state,
                                        @RequestParam String date,
                                        @RequestParam String record) throws IOException, ParseException {
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         Date d = format.parse(date);
         return therapyWrapper.updateTherapy(photos,therapyId, doctorId, patientId, state, d, record);
     }

@@ -2,6 +2,7 @@ package cn.sixdoctors.doctor.vo;
 
 import cn.sixdoctors.doctor.model.Case;
 import cn.sixdoctors.doctor.model.Therapy;
+import cn.sixdoctors.doctor.util.DateUtils;
 
 import java.util.Date;
 import java.util.List;
@@ -11,7 +12,7 @@ public class TherapyVO {
     private int doctorId;
     private int patientId;
     private String state;
-    private Date date;
+    private String date;
     private String record;
     private List<Case> photos;
 
@@ -23,7 +24,7 @@ public class TherapyVO {
         this.doctorId = therapy.getDoctorId();
         this.patientId = therapy.getPatientId();
         this.state = therapy.getState();
-        this.date = therapy.getDate();
+        this.date = DateUtils.getDateString(therapy.getDate());
         this.record = therapy.getRecord();
         this.photos = photos;
     }
@@ -60,11 +61,11 @@ public class TherapyVO {
         this.state = state;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
