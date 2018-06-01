@@ -9,7 +9,11 @@ public class PatientVO {
     private String patientIntention;
     private String patientAvatar;
 
-    public PatientVO(int patientId, String doctorName, String patientName, String status, String patientIntention, String patientAvatar) {
+    public PatientVO() {
+    }
+
+    public PatientVO(int patientId, String doctorName, String patientName, String status, String patientIntention,
+                     String patientAvatar) {
         this.patientId = patientId;
         this.doctorName = doctorName;
         this.patientName = patientName;
