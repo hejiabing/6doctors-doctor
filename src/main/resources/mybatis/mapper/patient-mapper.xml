@@ -46,36 +46,40 @@
 
     <update id="update" parameterType="cn.sixdoctors.doctor.model.Patient">
         UPDATE t_patient
+        LEFT JOIN
+        t_doctor_patient
+        ON t_patient.patient_id = t_doctor_patient.patient_id
         <set>
             <if test="patientName != null and patientName != ''">
-                patient_name = #{patientName},
+                t_patient.patient_name = #{patientName},
+                t_doctor_patient.patient_name = #{patientName},
             </if>
             <if test="gender != null and gender != ''">
-                gender = #{gender},
+                t_patient.gender = #{gender},
             </if>
             <if test="mobPhone != null and mobPhone != ''">
-                mobPhone = #{mobPhone},
+                t_patient.mobPhone = #{mobPhone},
             </if>
             <if test="age != 0">
-                age = #{age},
+                t_patient.age = #{age},
             </if>
             <if test="identityType != null and identityType != ''">
-                identity_type = #{identityType},
+                t_patient.identity_type = #{identityType},
             </if>
             <if test="identityNum != null and identityNum != ''">
-                identity_num = #{identityNum},
+                t_patient.identity_num = #{identityNum},
             </if>
             <if test="address != null and address != ''">
-                address = #{address},
+                t_patient.address = #{address},
             </if>
             <if test="place != null and place != ''">
-                place = #{place},
+                t_patient.place = #{place},
             </if>
             <if test="photoPath != null and photoPath != ''">
-                photoPath = #{photoPath},
+                t_patient.photoPath = #{photoPath},
             </if>
         </set>
-        WHERE patient_id = #{patientId}
+        WHERE t_patient.patient_id = #{patientId}
     </update>
 
 </mapper>
