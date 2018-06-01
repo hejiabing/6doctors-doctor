@@ -1,6 +1,8 @@
 package cn.sixdoctors.doctor.service;
 
 import cn.sixdoctors.doctor.dao.CaseDAO;
+import cn.sixdoctors.doctor.dao.DoctorDAO;
+import cn.sixdoctors.doctor.dao.PatientDAO;
 import cn.sixdoctors.doctor.dao.TherapyDAO;
 import cn.sixdoctors.doctor.model.Case;
 import cn.sixdoctors.doctor.model.Therapy;
@@ -23,32 +25,41 @@ public class TherapyService {
     @Resource
     private CaseDAO caseDAO;
 
+    @Resource
+    private DoctorDAO doctorDAO;
+
+    @Resource
+    private PatientDAO patientDAO;
+
     public List<TherapyVO> getTherapies(int patientId) {
-        List<Therapy> therapies = therapyDAO.findByPatientId(patientId);
-        List<TherapyVO> therapyVOS = new ArrayList<>();
-        for (Therapy t : therapies) {
-            therapyVOS.add(new TherapyVO(t, caseDAO.selectByTherapyId(t.getTherapyId())));
-        }
-        return therapyVOS;
+        return therapyDAO.findDTOByPatientId(patientId);
     }
 
     public TherapyVO getTherapy(int therapyId) {
         Therapy therapy = therapyDAO.findById(therapyId);
-        return new TherapyVO(therapy, caseDAO.selectByTherapyId(therapyId));
+        return new TherapyVO(therapy, caseDAO.selectByTherapyId(therapyId),
+                doctorDAO.findByDoctorId(therapy.getDoctorId()).getDoctorName(),
+                patientDAO.findByPatientId(therapy.getPatientId()).getPatientName());
     }
 
     public TherapyVO createTherapy(MultipartFile[] photos, Therapy therapy) throws IOException {
         therapyDAO.insert(therapy);
-        return new TherapyVO(therapy, insertCases(photos, therapy));
+        return new TherapyVO(therapy, insertCases(photos, therapy),
+                doctorDAO.findByDoctorId(therapy.getDoctorId()).getDoctorName(),
+                patientDAO.findByPatientId(therapy.getPatientId()).getPatientName());
     }
 
     public TherapyVO updateTherapy(MultipartFile[] photos, Therapy therapy) throws IOException {
         therapyDAO.update(therapy);
-        List<Case> cases = caseDAO.selectByTherapyId(therapy.getTherapyId());
-        return new TherapyVO(therapy, updateCases(photos, therapy));
+        return new TherapyVO(therapy, updateCases(photos, therapy),
+                doctorDAO.findByDoctorId(therapy.getDoctorId()).getDoctorName(),
+                patientDAO.findByPatientId(therapy.getPatientId()).getPatientName());
     }
 
     private List<Case> insertCases(MultipartFile[] photos, Therapy therapy) throws IOException {
+        if (photos == null) {
+            return null;
+        }
         List<Case> cases = new ArrayList<>();
         for (MultipartFile photo : photos) {
             Case c = new Case();
@@ -63,6 +74,9 @@ public class TherapyService {
     }
 
     private List<Case> updateCases(MultipartFile[] photos, Therapy therapy) throws IOException {
+        if (photos == null) {
+            return null;
+        }
         List<Case> cases = new ArrayList<>();
         for (MultipartFile photo : photos) {
             Case c = new Case();

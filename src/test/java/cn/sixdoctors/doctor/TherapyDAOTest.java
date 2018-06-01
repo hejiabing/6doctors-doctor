@@ -24,11 +24,11 @@ public class TherapyDAOTest {
     @Test
     public void insert() {
         Therapy therapy = new Therapy();
-        therapy.setDoctorId(1);
-        therapy.setPatientId(1);
+        therapy.setDoctorId(2);
+        therapy.setPatientId(7);
         therapy.setState("复诊");
         therapy.setDate(new Date());
-        therapy.setRecord("记录");
+        therapy.setRecord("记录2");
         therapyDAO.insert(therapy);
     }
 

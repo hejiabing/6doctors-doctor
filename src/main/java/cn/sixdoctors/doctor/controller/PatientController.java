@@ -1,8 +1,9 @@
 package cn.sixdoctors.doctor.controller;
 
-import cn.sixdoctors.doctor.model.DoctorPatient;
 import cn.sixdoctors.doctor.model.PassportUser;
 import cn.sixdoctors.doctor.model.Patient;
+import cn.sixdoctors.doctor.vo.PatientInfoVO;
+import cn.sixdoctors.doctor.vo.PatientVO;
 import cn.sixdoctors.doctor.vo.VO;
 import cn.sixdoctors.doctor.wrapper.PatientWrapper;
 import org.springframework.web.bind.annotation.*;
@@ -22,18 +23,18 @@ public class PatientController {
     private PatientWrapper patientWrapper;
 
     @GetMapping("/getPatients")
-    public VO<List<DoctorPatient>> getPatients(@RequestParam String token, @RequestParam int doctorId) {
+    public VO<List<PatientVO>> getPatients(@RequestParam String token, @RequestParam int doctorId) {
         return patientWrapper.getPatients(doctorId);
     }
 
     @GetMapping("/getPatient")
-    public VO<Patient> getPatient(@ApiIgnore @RequestAttribute PassportUser user, @RequestParam String token, @RequestParam int patientId) {
+    public VO<Patient> getPatient(@RequestParam String token, @RequestParam int patientId) {
         return patientWrapper.getPatient(patientId);
     }
 
     @GetMapping("/getPatientInfo")
-    public VO<Patient> getPatientInfo(@ApiIgnore @RequestAttribute PassportUser user, @RequestParam String token, @RequestParam int patientId) {
-        return null;
+    public VO<PatientInfoVO> getPatientInfo(@RequestParam String token, @RequestParam int patientId) {
+        return patientWrapper.getPatientInfo(patientId);
     }
 
     @PostMapping("/createPatient")

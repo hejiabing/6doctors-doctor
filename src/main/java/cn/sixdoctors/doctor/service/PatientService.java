@@ -1,12 +1,13 @@
 package cn.sixdoctors.doctor.service;
 
-import cn.sixdoctors.doctor.dao.DoctorDAO;
-import cn.sixdoctors.doctor.dao.DoctorPatientDAO;
-import cn.sixdoctors.doctor.dao.PatientDAO;
+import cn.sixdoctors.doctor.dao.*;
 import cn.sixdoctors.doctor.model.Doctor;
 import cn.sixdoctors.doctor.model.DoctorPatient;
 import cn.sixdoctors.doctor.model.PassportUser;
 import cn.sixdoctors.doctor.model.Patient;
+import cn.sixdoctors.doctor.vo.PatientInfoVO;
+import cn.sixdoctors.doctor.vo.PatientVO;
+import cn.sixdoctors.doctor.vo.TherapyVO;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -25,12 +26,29 @@ public class PatientService {
     @Resource
     private DoctorDAO doctorDAO;
 
-    public List<DoctorPatient> getPatients(int doctorId) {
-        return doctorPatientDAO.findByDoctorId(doctorId);
+    @Resource
+    private PatientDTODAO patientDTODAO;
+
+    @Resource
+    private PatientInfoDTODAO patientInfoDTODAO;
+
+    public List<PatientVO> getPatients(int doctorId) {
+        return patientDTODAO.findByDoctorId(doctorId);
     }
 
     public Patient getPatient(int patientId) {
         return patientDAO.findByPatientId(patientId);
+    }
+
+    public PatientInfoVO getPatientInfo(int patientId) {
+        PatientInfoVO patientInfoVO = patientInfoDTODAO.findByPatientId(patientId);
+        for (int i = 0; i < patientInfoVO.getTherapies().size(); i++) {
+            if (patientInfoVO.getTherapies().get(i).getPhotos().size() == 1
+                    && patientInfoVO.getTherapies().get(i).getPhotos().get(0).getCaseId() == 0) {
+                patientInfoVO.getTherapies().get(i).setPhotos(null);
+            }
+        }
+        return patientInfoVO;
     }
 
     public Patient createPatient(PassportUser user, Patient patient) {
@@ -40,7 +58,7 @@ public class PatientService {
         doctorPatient.setDoctorName(doctorDAO.findByDoctorId(user.getUserDetailId()).getDoctorName());
         doctorPatient.setPatientId(patient.getPatientId());
         doctorPatient.setPatientName(patient.getPatientName());
-        doctorPatient.setStatus("update");
+        doctorPatient.setStatus("首次面诊");
         doctorPatientDAO.insert(doctorPatient);
         return patient;
     }
