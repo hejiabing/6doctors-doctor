@@ -18,6 +18,9 @@ public class PatientInfoVO {
     private String avatar;
     private List<TherapyVO> therapies;
 
+    public PatientInfoVO() {
+    }
+
     public PatientInfoVO(Patient patient, List<TherapyVO> therapies) {
         this.patientId = patient.getPatientId();
         this.patientName = patient.getPatientName();
