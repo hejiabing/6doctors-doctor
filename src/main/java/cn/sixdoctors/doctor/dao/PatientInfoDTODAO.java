@@ -9,6 +9,6 @@ import java.util.List;
  */
 public interface PatientInfoDTODAO {
 
-    List<PatientInfoVO> findByPatientId(int patientId);
+    PatientInfoVO findByPatientId(int patientId);
 
 }
