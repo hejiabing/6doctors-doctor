@@ -51,7 +51,7 @@ public class TherapyService {
 
     public TherapyVO updateTherapy(MultipartFile[] photos, Therapy therapy) throws IOException {
         therapyDAO.update(therapy);
-        return new TherapyVO(therapy, updateCases(photos, therapy),
+        return new TherapyVO(therapy, insertCases(photos, therapy),
                 doctorDAO.findByDoctorId(therapy.getDoctorId()).getDoctorName(),
                 patientDAO.findByPatientId(therapy.getPatientId()).getPatientName());
     }
