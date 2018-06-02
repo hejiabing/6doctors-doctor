@@ -59,4 +59,9 @@ public class TherapyDAOTest {
         therapyDAO.update(therapy);
     }
 
+    @Test
+    public void findDTOByPatientId() {
+        System.out.println(therapyDAO.findDTOByPatientId(7));
+    }
+
 }
