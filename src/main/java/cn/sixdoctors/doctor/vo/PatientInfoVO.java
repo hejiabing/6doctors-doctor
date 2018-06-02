@@ -22,7 +22,7 @@ public class PatientInfoVO {
     private String firstTherapyDoctor;
     private String lastTherapyDate;
     private String lastTherapyDoctor;
-    private String lastStatus;
+    private String lastState;
     private int therapyCount;
 
     public PatientInfoVO() {
@@ -40,9 +40,24 @@ public class PatientInfoVO {
         this.place = patient.getPlace();
         this.avatar = patient.getPhotoPath();
         this.therapies = therapies;
-        if (therapies.size() != 0) {
+        this.therapyCount = therapies.size();
+        if (therapyCount > 0) {
             this.firstTherapyDate = therapies.get(0).getDate();
-//            this.firstTherapyDoctor = therapies.get(0).getDoctorId();
+            this.firstTherapyDoctor = therapies.get(0).getDoctorName();
+            this.lastTherapyDate = therapies.get(therapyCount - 1).getDate();
+            this.lastTherapyDoctor = therapies.get(therapyCount - 1).getDoctorName();
+            this.lastState = therapies.get(therapyCount - 1).getState();
+        }
+    }
+
+    public void initPatientInfo() {
+        therapyCount = therapies.size();
+        if (therapyCount > 0) {
+            firstTherapyDate = therapies.get(0).getDate();
+            firstTherapyDoctor = therapies.get(0).getDoctorName();
+            lastTherapyDate = therapies.get(therapyCount - 1).getDate();
+            lastTherapyDoctor = therapies.get(therapyCount - 1).getDoctorName();
+            lastState = therapies.get(therapyCount - 1).getState();
         }
     }
 
@@ -174,12 +189,12 @@ public class PatientInfoVO {
         this.therapyCount = therapyCount;
     }
 
-    public String getLastStatus() {
-        return lastStatus;
+    public String getLastState() {
+        return lastState;
     }
 
-    public void setLastStatus(String lastStatus) {
-        this.lastStatus = lastStatus;
+    public void setLastState(String lastState) {
+        this.lastState = lastState;
     }
 
     @Override
@@ -200,7 +215,7 @@ public class PatientInfoVO {
                 ", firstTherapyDoctor='" + firstTherapyDoctor + '\'' +
                 ", lastTherapyDate='" + lastTherapyDate + '\'' +
                 ", lastTherapyDoctor='" + lastTherapyDoctor + '\'' +
-                ", lastStatus='" + lastStatus + '\'' +
+                ", lastState='" + lastState + '\'' +
                 ", therapyCount=" + therapyCount +
                 '}';
     }

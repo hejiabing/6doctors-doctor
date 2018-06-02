@@ -48,6 +48,7 @@ public class PatientService {
                 patientInfoVO.getTherapies().get(i).setPhotos(null);
             }
         }
+        patientInfoVO.initPatientInfo();
         return patientInfoVO;
     }
 
