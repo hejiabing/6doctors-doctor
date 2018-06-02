@@ -19,6 +19,8 @@
             <result column="state" property="state" jdbcType="VARCHAR"/>
             <result column="date" property="date" jdbcType="TIMESTAMP"/>
             <result column="record" property="record" jdbcType="BLOB"/>
+            <result column="doctor_name" property="doctorName" jdbcType="VARCHAR"/>
+            <result column="patient_name" property="patientName" jdbcType="VARCHAR"/>
             <collection property="photos" javaType="java.util.List" ofType="cn.sixdoctors.doctor.model.Case">
                 <id column="case_id" property="caseId" jdbcType="INTEGER"/>
                 <result column="therapy_id" property="therapyId" jdbcType="INTEGER"/>
@@ -29,13 +31,15 @@
 
     <select id="findByPatientId" parameterType="int" resultMap="patientInfoDTOMap">
         SELECT p.patient_id, p.patient_name, p.gender, p.mobPhone, p.age, p.identity_type, p.identity_num, p.address, p.place, p.photoPath,
-        th.therapy_id, th.doctor_id, th.patient_id, th.state, th.date, th.record,
+        th.therapy_id, th.doctor_id, th.patient_id, th.state, th.date, th.record,dp.doctor_name, dp.patient_name,
         c.case_id, c.therapy_id, c.casePath
         FROM t_patient p
         LEFT JOIN
         t_therapy th
         ON
         p.patient_id = th.patient_id
+        LEFT JOIN t_doctor_patient dp
+        ON th.doctor_id = dp.doctor_id AND th.patient_id = dp.patient_id
         LEFT JOIN
         t_case c
         ON
