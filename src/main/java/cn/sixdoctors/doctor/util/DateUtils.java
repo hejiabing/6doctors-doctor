@@ -6,11 +6,21 @@ import java.util.Date;
 public class DateUtils {
 
     public static String getDateString(Date date) {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        return simpleDateFormat.format(date);
+        if (date != null) {
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            return simpleDateFormat.format(date);
+        } else {
+            return null;
+        }
+
     }
 
     public static String getDateString(String date) {
-        return date.substring(0, 10);
+        if (date != null) {
+            return date.substring(0, 10);
+        } else {
+            return null;
+        }
+
     }
 }
