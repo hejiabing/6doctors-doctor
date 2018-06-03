@@ -6,6 +6,7 @@ import cn.sixdoctors.doctor.dao.PatientDAO;
 import cn.sixdoctors.doctor.dao.TherapyDAO;
 import cn.sixdoctors.doctor.model.Case;
 import cn.sixdoctors.doctor.model.Therapy;
+import cn.sixdoctors.doctor.util.DateUtils;
 import cn.sixdoctors.doctor.util.FileUtils;
 import cn.sixdoctors.doctor.vo.TherapyVO;
 import org.springframework.stereotype.Service;
@@ -32,7 +33,11 @@ public class TherapyService {
     private PatientDAO patientDAO;
 
     public List<TherapyVO> getTherapies(int patientId) {
-        return therapyDAO.findDTOByPatientId(patientId);
+        List<TherapyVO> therapyVOS = therapyDAO.findDTOByPatientId(patientId);
+        for (TherapyVO therapyVO : therapyVOS) {
+            therapyVO.setDate(DateUtils.getDateString(therapyVO.getDate()));
+        }
+        return therapyVOS;
     }
 
     public TherapyVO getTherapy(int therapyId) {

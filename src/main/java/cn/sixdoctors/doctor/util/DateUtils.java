@@ -9,4 +9,8 @@ public class DateUtils {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         return simpleDateFormat.format(date);
     }
+
+    public static String getDateString(String date) {
+        return date.substring(0, 10);
+    }
 }
