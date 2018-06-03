@@ -40,18 +40,14 @@ public class PatientInfoVO {
         this.place = patient.getPlace();
         this.avatar = patient.getPhotoPath();
         this.therapies = therapies;
-        this.therapyCount = therapies.size();
-        if (therapyCount > 0) {
-            this.firstTherapyDate = therapies.get(0).getDate();
-            this.firstTherapyDoctor = therapies.get(0).getDoctorName();
-            this.lastTherapyDate = therapies.get(therapyCount - 1).getDate();
-            this.lastTherapyDoctor = therapies.get(therapyCount - 1).getDoctorName();
-            this.lastState = therapies.get(therapyCount - 1).getState();
-        }
+        initPatientInfo();
     }
 
     public void initPatientInfo() {
         therapyCount = therapies.size();
+        for (TherapyVO t: therapies) {
+            t.setDate(DateUtils.getDateString(t.getDate()));
+        }
         if (therapyCount > 0) {
             firstTherapyDate = therapies.get(0).getDate();
             firstTherapyDoctor = therapies.get(0).getDoctorName();
