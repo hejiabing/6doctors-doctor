@@ -12,6 +12,7 @@
         <result column="address" property="address" jdbcType="VARCHAR"/>
         <result column="place" property="place" jdbcType="VARCHAR"/>
         <result column="photoPath" property="avatar" jdbcType="VARCHAR"/>
+        <result column="therapyCount" property="therapyCount" jdbcType="INTEGER"/>
         <collection property="therapies" javaType="java.util.List" ofType="cn.sixdoctors.doctor.vo.TherapyVO">
             <id column="therapy_id" property="therapyId" jdbcType="INTEGER"/>
             <result column="doctor_id" property="doctorId" jdbcType="INTEGER"/>
@@ -32,7 +33,8 @@
     <select id="findByPatientId" parameterType="int" resultMap="patientInfoDTOMap">
         SELECT p.patient_id, p.patient_name, p.gender, p.mobPhone, p.age, p.identity_type, p.identity_num, p.address, p.place, p.photoPath,
         th.therapy_id, th.doctor_id, th.patient_id, th.state, th.date, th.record,dp.doctor_name, dp.patient_name,
-        c.case_id, c.therapy_id, c.casePath
+        c.case_id, c.therapy_id, c.casePath,
+        ( SELECT COUNT( * ) FROM t_therapy WHERE t_therapy.patient_id = p.patient_id ) as therapyCount
         FROM t_patient p
         LEFT JOIN
         t_therapy th
