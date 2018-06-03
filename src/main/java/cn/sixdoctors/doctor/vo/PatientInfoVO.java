@@ -44,9 +44,11 @@ public class PatientInfoVO {
     }
 
     public void initPatientInfo() {
-        therapyCount = therapies.size();
         for (TherapyVO t: therapies) {
             t.setDate(DateUtils.getDateString(t.getDate()));
+        }
+        if (therapyCount == 0) {
+            therapies = null;
         }
         if (therapyCount > 0) {
             firstTherapyDate = therapies.get(0).getDate();
