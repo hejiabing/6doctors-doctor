@@ -62,6 +62,8 @@ public class TherapyService {
     }
 
     private List<Case> insertCases(MultipartFile[] photos, Therapy therapy) throws IOException {
+
+        System.out.println("photos==============="+ photos);
         if (photos == null) {
             return null;
         }
