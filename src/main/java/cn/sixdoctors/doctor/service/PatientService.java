@@ -59,7 +59,7 @@ public class PatientService {
         doctorPatient.setDoctorName(doctorDAO.findByDoctorId(user.getUserDetailId()).getDoctorName());
         doctorPatient.setPatientId(patient.getPatientId());
         doctorPatient.setPatientName(patient.getPatientName());
-        doctorPatient.setStatus("首次面诊");
+        doctorPatient.setStatus("未就诊");
         doctorPatientDAO.insert(doctorPatient);
         return patient;
     }
