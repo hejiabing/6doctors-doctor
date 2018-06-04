@@ -63,7 +63,6 @@ public class TherapyService {
 
     private List<Case> insertCases(MultipartFile[] photos, Therapy therapy) throws IOException {
 
-        System.out.println("photos==============="+ photos);
         if (photos == null) {
             return null;
         }
@@ -71,6 +70,7 @@ public class TherapyService {
         for (MultipartFile photo : photos) {
             Case c = new Case();
             c.setTherapyId(therapy.getTherapyId());
+            System.out.println("photo:" + photo + "===============" + photo.getOriginalFilename());
             String fileName = FileUtils.randomName(therapy.getTherapyId(), photo.getOriginalFilename());
             FileUtils.uploadFile(photo.getBytes(), "/data/doctor/cases/", fileName);
             c.setCasePath("http://api.6doctors.cn/cases/" + fileName);
