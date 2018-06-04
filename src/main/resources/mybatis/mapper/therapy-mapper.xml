@@ -32,7 +32,15 @@
         t_therapy
         (doctor_id, patient_id, state, date, record)
         VALUES
-        (#{doctorId}, #{patientId}, #{state}, #{date}, #{record})
+        (#{doctorId}, #{patientId}, #{state}, #{date}, #{record});
+
+        UPDATE t_doctor_patient
+        <set>
+            <if test="state != null and state != ''">
+                t_doctor_patient.status = #{state}
+            </if>
+        </set>
+        WHERE t_doctor_patient.doctor_id = #{doctorId} AND t_doctor_patient.patient_id = #{patientId}
     </insert>
 
     <select id="findByDoctorId" parameterType="int" resultMap="therapy">
@@ -70,21 +78,25 @@
 
     <update id="update" parameterType="cn.sixdoctors.doctor.model.Therapy">
         UPDATE t_therapy
+        LEFT JOIN
+        t_doctor_patient
+        ON t_therapy.patient_id = t_doctor_patient.patient_id
         <set>
             <if test="doctorId != 0">
-                doctor_id = #{doctorId},
+                t_therapy.doctor_id = #{doctorId},
             </if>
             <if test="patientId != 0">
-                patient_id = #{patientId},
+                t_therapy.patient_id = #{patientId},
             </if>
             <if test="state != null and state != ''">
-                state = #{state},
+                t_therapy.state = #{state},
+                t_doctor_patient.status = #{state},
             </if>
             <if test="date != null">
-                date = #{date},
+                t_therapy.date = #{date},
             </if>
             <if test="record != null and record != ''">
-                record = #{record},
+                t_therapy.record = #{record},
             </if>
         </set>
         WHERE therapy_id = #{therapyId}

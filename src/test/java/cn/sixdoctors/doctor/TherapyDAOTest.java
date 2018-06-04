@@ -50,12 +50,12 @@ public class TherapyDAOTest {
     @Test
     public void update() {
         Therapy therapy = new Therapy();
-        therapy.setDoctorId(1);
-        therapy.setPatientId(1);
-        therapy.setState("update");
+        therapy.setDoctorId(2);
+        therapy.setPatientId(7);
+        therapy.setState("出院");
         therapy.setDate(new Date());
         therapy.setRecord("记录");
-        therapy.setTherapyId(1);
+        therapy.setTherapyId(17);
         therapyDAO.update(therapy);
     }
 
