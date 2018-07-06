@@ -8,17 +8,82 @@
         <result column="status" property="status" jdbcType="VARCHAR"/>
         <result column="" property="patientIntention" jdbcType="VARCHAR"/>
         <result column="photoPath" property="patientAvatar" jdbcType="VARCHAR"/>
+        <collection property="labels" javaType="java.util.List" ofType="cn.sixdoctors.doctor.vo.LabelVO">
+            <id column="label_id" property="labelId" jdbcType="INTEGER"/>
+            <result column="name" property="name" jdbcType="VARCHAR"/>
+            <result column="doctor_id" property="doctorId" jdbcType="INTEGER"/>
+            <result column="label_patient_id" property="labelPatientId" jdbcType="INTEGER"/>
+        </collection>
     </resultMap>
 
     <select id="findByDoctorId" parameterType="int" resultMap="patientDTOMap">
-        SELECT dp.patient_id, dp.doctor_name, dp.patient_name, dp.status, p.photoPath
+        SELECT dp.patient_id, dp.doctor_name, dp.patient_name, dp.status, p.photoPath, l.label_id, l.name, l.doctor_id,
+        tlp.label_patient_id
         FROM t_doctor_patient dp
         LEFT JOIN
         t_patient p
         ON
         dp.patient_id = p.patient_id
+        left join
+        t_label_patient tlp
+        on tlp.patient_id = p.patient_id
+        left join
+        t_label l
+        on l.label_id = tlp.label_id
         WHERE
         dp.doctor_id = #{doctorId}
+    </select>
+
+    <select id="findAll" resultMap="patientDTOMap">
+        SELECT dp.patient_id, dp.doctor_name, dp.patient_name, dp.status, p.photoPath, l.label_id, l.name, l.doctor_id,
+        tlp.label_patient_id
+        FROM t_doctor_patient dp
+        LEFT JOIN
+        t_patient p
+        ON
+        dp.patient_id = p.patient_id
+        left join
+        t_label_patient tlp
+        on tlp.patient_id = p.patient_id
+        left join
+        t_label l
+        on l.label_id = tlp.label_id
+    </select>
+
+    <select id="findByLabelId" parameterType="int" resultMap="patientDTOMap">
+        SELECT dp.patient_id, dp.doctor_name, dp.patient_name, dp.status, p.photoPath, l.label_id, l.name, l.doctor_id,
+        tlp.label_patient_id
+        FROM t_doctor_patient dp
+        LEFT JOIN
+        t_patient p
+        ON
+        dp.patient_id = p.patient_id
+        left join
+        t_label_patient tlp
+        on tlp.patient_id = p.patient_id
+        left join
+        t_label l
+        on l.label_id = tlp.label_id
+        WHERE
+        l.label_id = #{labelId} and dp.doctor_id = #{doctorId}
+    </select>
+
+    <select id="findAllByLabelId" parameterType="int" resultMap="patientDTOMap">
+        SELECT dp.patient_id, dp.doctor_name, dp.patient_name, dp.status, p.photoPath, l.label_id, l.name, l.doctor_id,
+        tlp.label_patient_id
+        FROM t_doctor_patient dp
+        LEFT JOIN
+        t_patient p
+        ON
+        dp.patient_id = p.patient_id
+        left join
+        t_label_patient tlp
+        on tlp.patient_id = p.patient_id
+        left join
+        t_label l
+        on l.label_id = tlp.label_id
+        WHERE
+        l.label_id = #{labelId}
     </select>
 
 </mapper>

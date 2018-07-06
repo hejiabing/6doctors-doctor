@@ -28,13 +28,20 @@
                 <result column="casePath" property="casePath" jdbcType="VARCHAR"/>
             </collection>
         </collection>
+        <collection property="labels" javaType="java.util.List" ofType="cn.sixdoctors.doctor.vo.LabelVO">
+            <id column="label_id" property="labelId" jdbcType="INTEGER"/>
+            <result column="name" property="name" jdbcType="VARCHAR"/>
+            <result column="doctor_id" property="doctorId" jdbcType="INTEGER"/>
+            <result column="label_patient_id" property="labelPatientId" jdbcType="INTEGER"/>
+        </collection>
     </resultMap>
 
     <select id="findByPatientId" parameterType="int" resultMap="patientInfoDTOMap">
         SELECT p.patient_id, p.patient_name, p.gender, p.mobPhone, p.age, p.identity_type, p.identity_num, p.address, p.place, p.photoPath,
         th.therapy_id, th.doctor_id, th.patient_id, th.state, th.date, th.record,dp.doctor_name, dp.patient_name,
         c.case_id, c.therapy_id, c.casePath,
-        ( SELECT COUNT( * ) FROM t_therapy WHERE t_therapy.patient_id = p.patient_id ) as therapyCount
+        ( SELECT COUNT( * ) FROM t_therapy WHERE t_therapy.patient_id = p.patient_id ) as therapyCount,
+        l.label_id, l.name, l.doctor_id, tlp.label_patient_id
         FROM t_patient p
         LEFT JOIN
         t_therapy th
@@ -46,6 +53,12 @@
         t_case c
         ON
         th.therapy_id = c.therapy_id
+        left join
+        t_label_patient tlp
+        on tlp.patient_id = p.patient_id
+        left join
+        t_label l
+        on l.label_id = tlp.label_id
         WHERE
         p.patient_id = #{patientId}
     </select>

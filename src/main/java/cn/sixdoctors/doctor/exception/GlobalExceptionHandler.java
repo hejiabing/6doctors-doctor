@@ -3,10 +3,7 @@ package cn.sixdoctors.doctor.exception;
 import cn.sixdoctors.doctor.vo.VO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.ControllerAdvice;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -37,6 +34,15 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public void badRequest(IOException e, HttpServletResponse response) {
         tryCatch(VO.IMAGE_WRITE_ERROR, response);
+    }
+
+    @ExceptionHandler(MyException.class)
+    @ResponseBody
+    public VO myException(MyException e, HttpServletResponse response) {
+        VO vo = new VO();
+        vo.setMsg(e.getMessage());
+        vo.setStatus(1);
+        return vo;
     }
 
     private void tryCatch(VO result, HttpServletResponse response) {

@@ -23,6 +23,10 @@ public class PatientDTODAOTest {
         System.out.println(patientDTODAO.findByDoctorId(2));
     }
 
+    @Test
+    public void findAllByLabelId() {
+        System.out.println(patientDTODAO.findByLabelId(1,2));
+    }
 
 
 }

@@ -33,7 +33,15 @@ public class PatientService {
     private PatientInfoDTODAO patientInfoDTODAO;
 
     public List<PatientVO> getPatients(int doctorId) {
-        return patientDTODAO.findByDoctorId(doctorId);
+
+        Doctor doctor = doctorDAO.findByDoctorId(doctorId);
+
+        if (doctor.getRole() == 101) {
+            return patientDTODAO.findAll();
+        } else {
+            return patientDTODAO.findByDoctorId(doctorId);
+        }
+
     }
 
     public Patient getPatient(int patientId) {
@@ -67,5 +75,17 @@ public class PatientService {
     public Patient updatePatient(Patient patient) {
         patientDAO.update(patient);
         return patient;
+    }
+
+    public List<PatientVO> getByLabelId(int labelId, int doctorId) {
+
+        Doctor doctor = doctorDAO.findByDoctorId(doctorId);
+
+        if (doctor.getRole() == 101) {
+            return patientDTODAO.findAllByLabelId(labelId);
+        } else {
+            return patientDTODAO.findByLabelId(labelId, doctorId);
+        }
+
     }
 }

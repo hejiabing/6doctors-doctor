@@ -6,6 +6,7 @@
         <result column="doctor_name" property="doctorName" jdbcType="VARCHAR"/>
         <result column="hospital_name" property="hospitalName" jdbcType="VARCHAR"/>
         <result column="depart_name" property="departName" jdbcType="VARCHAR"/>
+        <result column="role" property="role" jdbcType="INTEGER"/>
     </resultMap>
 
     <insert id="insert" parameterType="cn.sixdoctors.doctor.model.Doctor" useGeneratedKeys="true"
@@ -18,21 +19,21 @@
     </insert>
 
     <select id="findByDoctorId" parameterType="int" resultMap="doctor">
-        SELECT doctor_id, doctor_name, hospital_name, depart_name
+        SELECT doctor_id, doctor_name, hospital_name, depart_name, role
         FROM t_doctor
         WHERE
         doctor_id = #{doctorId}
     </select>
 
     <select id="findByDoctorName" parameterType="string" resultMap="doctor">
-        SELECT doctor_id, doctor_name, hospital_name, depart_name
+        SELECT doctor_id, doctor_name, hospital_name, depart_name, role
         FROM t_doctor
         WHERE
         doctor_name LIKE CONCAT('%',#{0},'%')
     </select>
 
     <select id="findBySearch" parameterType="map" resultMap="doctor">
-        SELECT doctor_id, doctor_name, hospital_name, depart_name
+        SELECT doctor_id, doctor_name, hospital_name, depart_name, role
         FROM t_doctor
         <where>
             <if test="hospitalName != null and hospitalName != ''">
@@ -58,6 +59,9 @@
             </if>
             <if test="departName != null and departName != ''">
                 depart_name = #{departName},
+            </if>
+            <if test="role != 0">
+                role = #{role},
             </if>
         </set>
         WHERE doctor_id = #{doctorId}

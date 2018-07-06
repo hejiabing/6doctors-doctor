@@ -1,5 +1,6 @@
 package cn.sixdoctors.doctor.vo;
 
+import cn.sixdoctors.doctor.model.Label;
 import cn.sixdoctors.doctor.model.Patient;
 import cn.sixdoctors.doctor.util.DateUtils;
 
@@ -25,6 +26,8 @@ public class PatientInfoVO {
     private String lastState;
     private int therapyCount;
 
+    private List<LabelVO> labels;
+
     public PatientInfoVO() {
     }
 
@@ -44,7 +47,7 @@ public class PatientInfoVO {
     }
 
     public void initPatientInfo() {
-        for (TherapyVO t: therapies) {
+        for (TherapyVO t : therapies) {
             t.setDate(DateUtils.getDateString(t.getDate()));
         }
         if (therapyCount == 0) {
@@ -195,6 +198,14 @@ public class PatientInfoVO {
         this.lastState = lastState;
     }
 
+    public List<LabelVO> getLabels() {
+        return labels;
+    }
+
+    public void setLabels(List<LabelVO> labels) {
+        this.labels = labels;
+    }
+
     @Override
     public String toString() {
         return "PatientInfoVO{" +
@@ -215,6 +226,7 @@ public class PatientInfoVO {
                 ", lastTherapyDoctor='" + lastTherapyDoctor + '\'' +
                 ", lastState='" + lastState + '\'' +
                 ", therapyCount=" + therapyCount +
+                ", labels=" + labels +
                 '}';
     }
 }

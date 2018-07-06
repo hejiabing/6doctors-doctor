@@ -38,7 +38,7 @@ public class PatientDAOTest {
 
     @Test
     public void findByPatientId() {
-        System.out.println(patientDAO.findByPatientId(7));
+        System.out.println(patientDAO.findByPatientId(35));
     }
 
     @Test
