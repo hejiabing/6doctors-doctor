@@ -121,4 +121,35 @@ public class LabelWrapper {
         return labelPatients;
     }
 
+    public VO<List<LabelPatient>> addPatientToNoLabel(String labelName, List<Integer> patientsId, int doctorId) {
+
+        if (doctorId == 0 || labelName == null || labelName.trim().equals("") || patientsId.size() <= 0) {
+            throw new MyException("参数有误!" + "doctorId:" + doctorId + "labelName:" + labelName + "patientsId:" + patientsId);
+        }
+
+        // 最好数据库一次性通信完成，这里分成了两步网络访问
+        List<Label> labels = labelService.findLabelsByDoctorId(doctorId);
+        int labelId = 0;
+        for (Label label : labels) {
+            if (label.getName().equals(labelName.trim())) {
+                labelId = label.getLabelId();
+                break;
+            }
+        }
+
+        if (labelId == 0) {
+            Label label = new Label();
+            label.setName(labelName.trim());
+            label.setDoctorId(doctorId);
+            labelService.addLabel(label);
+            labelId = label.getLabelId();
+        }
+
+        List<LabelPatient> labelPatients = createLabelPatients(labelId, patientsId);
+        if (labelService.addLabelPatient(labelPatients) > 0) {
+            return new VO<>(labelPatients);
+        } else {
+            return new VO<>(0, "添加失败", labelPatients);
+        }
+    }
 }
