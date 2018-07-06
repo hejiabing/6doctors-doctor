@@ -64,15 +64,24 @@ public class DoctorController {
     @ApiOperation("移除病人的标签（分组）")
     @PostMapping(value = "/delLabelPatient")
     public VO<LabelPatient> delLabelPatient(@RequestParam String token, @RequestParam int labelPatientId,
-                                     @ApiIgnore @RequestAttribute Integer doctorId) {
+                                            @ApiIgnore @RequestAttribute Integer doctorId) {
         return labelWrapper.delLabelPatient(labelPatientId, doctorId);
     }
 
     @ApiOperation("查看标签（分组）中的所有患者")
     @PostMapping(value = "/findByLabelId")
     public VO<List<PatientVO>> findByLabelId(@RequestParam String token,
-                                                    @RequestParam int labelId,
-                                                    @ApiIgnore @RequestAttribute Integer doctorId) {
+                                             @RequestParam int labelId,
+                                             @ApiIgnore @RequestAttribute Integer doctorId) {
         return labelWrapper.findByLabelId(labelId, doctorId);
+    }
+
+    @ApiOperation("给病人添加不存在的标签（分组）")
+    @PostMapping(value = "/addPatientToNoLabel")
+    public VO<List<LabelPatient>> addPatientToNoLabel(@RequestParam String token,
+                                                      @RequestParam List<Integer> patientsId,
+                                                      @RequestParam String labelName,
+                                                      @ApiIgnore @RequestAttribute Integer doctorId) {
+        return labelWrapper.addPatientToNoLabel(labelName, patientsId, doctorId);
     }
 }
