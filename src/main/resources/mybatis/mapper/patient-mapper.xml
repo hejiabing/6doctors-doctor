@@ -12,6 +12,12 @@
         <result column="address" property="address" jdbcType="VARCHAR"/>
         <result column="place" property="place" jdbcType="VARCHAR"/>
         <result column="photoPath" property="photoPath" jdbcType="VARCHAR"/>
+        <collection property="labels" javaType="java.util.List" ofType="cn.sixdoctors.doctor.vo.LabelVO">
+            <id column="label_id" property="labelId" jdbcType="INTEGER"/>
+            <result column="name" property="name" jdbcType="VARCHAR"/>
+            <result column="doctor_id" property="doctorId" jdbcType="INTEGER"/>
+            <result column="label_patient_id" property="labelPatientId" jdbcType="INTEGER"/>
+        </collection>
     </resultMap>
 
     <insert id="insert" parameterType="cn.sixdoctors.doctor.model.Patient" useGeneratedKeys="true"
@@ -24,10 +30,17 @@
     </insert>
 
     <select id="findByPatientId" parameterType="int" resultMap="patient">
-        SELECT patient_id, patient_name, gender, mobPhone, age, identity_type, identity_num, address, place, photoPath
-        FROM t_patient
+        SELECT tp.patient_id, tp.patient_name, tp.gender, tp.mobPhone, tp.age, tp.identity_type, tp.identity_num, tp.address, tp.place, tp.photoPath,
+        l.label_id, l.name, l.doctor_id, tlp.label_patient_id
+        FROM t_patient tp
+        left join
+        t_label_patient tlp
+        on tlp.patient_id = tp.patient_id
+        left join
+        t_label l
+        on l.label_id = tlp.label_id
         WHERE
-        patient_id = #{patientId}
+        tp.patient_id = #{patientId}
     </select>
 
     <select id="findByPatientName" parameterType="string" resultMap="patient">

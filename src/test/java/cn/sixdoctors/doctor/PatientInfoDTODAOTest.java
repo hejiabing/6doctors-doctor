@@ -24,7 +24,7 @@ public class PatientInfoDTODAOTest {
 
     @Test
     public void findByPatientId() {
-        System.out.println(patientInfoDTODAO.findByPatientId(7));
+        System.out.println(patientInfoDTODAO.findByPatientId(35));
     }
 
     @Test

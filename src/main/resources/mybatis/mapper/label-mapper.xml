@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.sixdoctors.doctor.dao.LabelDAO">
+    <resultMap id="label" type="cn.sixdoctors.doctor.model.Label">
+        <id column="label_id" property="labelId" jdbcType="INTEGER"/>
+        <result column="doctor_id" property="doctorId" jdbcType="INTEGER"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <insert id="addLabel" parameterType="cn.sixdoctors.doctor.model.Label" useGeneratedKeys="true"
+            keyProperty="labelId">
+        INSERT INTO
+        t_label
+        (name, doctor_id)
+        VALUES
+        (#{name}, #{doctorId})
+    </insert>
+
+    <select id="findByDoctorId" parameterType="int" resultMap="label">
+        SELECT label_id, name, doctor_id
+        FROM t_label
+        WHERE
+        doctor_id = #{doctorId}
+    </select>
+
+    <update id="updateLabel" parameterType="cn.sixdoctors.doctor.model.Label">
+        UPDATE t_label
+        <set>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+        </set>
+        WHERE label_id = #{labelId} and doctor_id = #{doctorId}
+    </update>
+
+    <delete id="delLabel" parameterType="cn.sixdoctors.doctor.model.Label">
+        delete from t_label where label_id = #{labelId} and doctor_id = #{doctorId};
+        delete from t_label_patient where t_label_patient.label_id = #{labelId};
+    </delete>
+</mapper>

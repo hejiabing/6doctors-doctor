@@ -23,7 +23,7 @@ public class MyWebMvcConfigurer extends WebMvcConfigurerAdapter {
     public void addInterceptors(InterceptorRegistry registry) {
 
         registry.addInterceptor(authInterceptor).addPathPatterns("/api/*");
-//        registry.addInterceptor(authInterceptor).addPathPatterns("/admin/*");
+        registry.addInterceptor(authInterceptor).addPathPatterns("/doctor/*");
 //        registry.addInterceptor(authInterceptor).addPathPatterns("/*");
         registry.addInterceptor(crossFieldInterceptor);
 

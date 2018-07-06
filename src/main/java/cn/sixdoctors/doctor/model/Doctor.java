@@ -8,6 +8,7 @@ public class Doctor {
     private String doctorName;
     private String hospitalName;
     private String departName;
+    private int role;
 
     public int getDoctorId() {
         return doctorId;
@@ -41,6 +42,14 @@ public class Doctor {
         this.departName = departName;
     }
 
+    public int getRole() {
+        return role;
+    }
+
+    public void setRole(int role) {
+        this.role = role;
+    }
+
     @Override
     public String toString() {
         return "Doctor{" +
@@ -48,6 +57,7 @@ public class Doctor {
                 ", doctorName='" + doctorName + '\'' +
                 ", hospitalName='" + hospitalName + '\'' +
                 ", departName='" + departName + '\'' +
+                ", role=" + role +
                 '}';
     }
 }

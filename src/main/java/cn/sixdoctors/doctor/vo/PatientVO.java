@@ -1,5 +1,9 @@
 package cn.sixdoctors.doctor.vo;
 
+import cn.sixdoctors.doctor.model.Label;
+
+import java.util.List;
+
 public class PatientVO {
 
     private int patientId;
@@ -8,6 +12,8 @@ public class PatientVO {
     private String status;
     private String patientIntention;
     private String patientAvatar;
+
+    private List<LabelVO> labels;
 
     public PatientVO() {
     }
@@ -70,6 +76,14 @@ public class PatientVO {
         this.patientAvatar = patientAvatar;
     }
 
+    public List<LabelVO> getLabels() {
+        return labels;
+    }
+
+    public void setLabels(List<LabelVO> labels) {
+        this.labels = labels;
+    }
+
     @Override
     public String toString() {
         return "PatientVO{" +
@@ -79,6 +93,7 @@ public class PatientVO {
                 ", status='" + status + '\'' +
                 ", patientIntention='" + patientIntention + '\'' +
                 ", patientAvatar='" + patientAvatar + '\'' +
+                ", labels=" + labels +
                 '}';
     }
 }

@@ -1,5 +1,9 @@
 package cn.sixdoctors.doctor.model;
 
+import cn.sixdoctors.doctor.vo.LabelVO;
+
+import java.util.List;
+
 /**
  * Created by wangpengcheng on 2018/5/20.
  */
@@ -14,6 +18,8 @@ public class Patient {
     private String address;
     private String place;
     private String photoPath;
+
+    private List<LabelVO> labels;
 
     public int getPatientId() {
         return patientId;
@@ -95,6 +101,14 @@ public class Patient {
         this.photoPath = photoPath;
     }
 
+    public List<LabelVO> getLabels() {
+        return labels;
+    }
+
+    public void setLabels(List<LabelVO> labels) {
+        this.labels = labels;
+    }
+
     @Override
     public String toString() {
         return "Patient{" +
@@ -108,6 +122,7 @@ public class Patient {
                 ", address='" + address + '\'' +
                 ", place='" + place + '\'' +
                 ", photoPath='" + photoPath + '\'' +
+                ", labels=" + labels +
                 '}';
     }
 }
