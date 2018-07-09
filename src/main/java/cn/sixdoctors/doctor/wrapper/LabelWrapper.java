@@ -146,7 +146,7 @@ public class LabelWrapper {
         }
 
         List<LabelPatient> labelPatients = createLabelPatients(labelId, patientsId);
-        if (labelService.addLabelPatient(labelPatients) > 0) {
+        if (labelService.addLabelPatient(labelPatients) >= 0) {
             return new VO<>(labelPatients);
         } else {
             return new VO<>(0, "添加失败", labelPatients);
