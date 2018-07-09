@@ -79,7 +79,7 @@ public class LabelWrapper {
             throw new MyException("参数有误!" + "doctorId:" + doctorId + "labelId:" + labelId + "patientsId:" + patientsId);
         }
         List<LabelPatient> labelPatients = createLabelPatients(labelId, patientsId);
-        if (labelService.addLabelPatient(labelPatients) > 0) {
+        if (labelService.addLabelPatient(labelPatients) >= 0) {
             return new VO<>(labelPatients);
         } else {
             return new VO<>(0, "添加失败", labelPatients);
