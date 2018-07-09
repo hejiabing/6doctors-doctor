@@ -8,7 +8,7 @@
     </resultMap>
 
     <insert id="addLabelPatients" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="labelPatientId">
-        INSERT INTO
+        INSERT ignore INTO
         t_label_patient
         (label_id, patient_id)
         VALUES

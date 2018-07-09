@@ -9,7 +9,7 @@
 
     <insert id="addLabel" parameterType="cn.sixdoctors.doctor.model.Label" useGeneratedKeys="true"
             keyProperty="labelId">
-        INSERT INTO
+        INSERT ignore INTO
         t_label
         (name, doctor_id)
         VALUES
