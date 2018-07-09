@@ -42,8 +42,8 @@ public class LabelService {
         return labelPatientDAO.addLabelPatients(labelPatients);
     }
 
-    public void delLabelPatient(int LabelPatientId) {
-        labelPatientDAO.delLabelPatient(LabelPatientId);
+    public void delLabelPatient(int labelId, int patientId) {
+        labelPatientDAO.delLabelPatient(labelId, patientId);
     }
 
     public List<LabelPatient> findLabelPatientsByLabelId(int labelId) {

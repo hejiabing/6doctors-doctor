@@ -1,6 +1,7 @@
 package cn.sixdoctors.doctor.dao;
 
 import cn.sixdoctors.doctor.model.LabelPatient;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -11,7 +12,7 @@ public interface LabelPatientDAO {
 
     int addLabelPatients(List<LabelPatient> labelPatients);
 
-    int delLabelPatient(int id);
+    int delLabelPatient(@Param("labelId") int labelId, @Param("patientId") int patientId);
 
     List<LabelPatient> findByLabelId(int labelId);
 

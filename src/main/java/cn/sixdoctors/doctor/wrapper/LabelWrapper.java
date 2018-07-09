@@ -86,13 +86,14 @@ public class LabelWrapper {
         }
     }
 
-    public VO<LabelPatient> delLabelPatient(int labelPatientId, int doctorId) {
-        if (doctorId == 0 || labelPatientId == 0) {
-            throw new MyException("参数有误!" + "doctorId:" + doctorId + "labelPatientId:" + labelPatientId);
+    public VO<LabelPatient> delLabelPatient(int labelId, int patientId, int doctorId) {
+        if (doctorId == 0 || labelId == 0 || patientId == 0) {
+            throw new MyException("参数有误!" + "doctorId:" + doctorId + "labelId:" + labelId + "patientId" + patientId);
         }
         LabelPatient labelPatient = new LabelPatient();
-        labelPatient.setLabelId(labelPatientId);
-        labelService.delLabelPatient(labelPatientId);
+        labelPatient.setLabelId(patientId);
+        labelPatient.setPatientId(patientId);
+        labelService.delLabelPatient(labelId, patientId);
         return new VO<>(labelPatient);
     }
 

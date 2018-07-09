@@ -42,7 +42,7 @@ public class LabelPatientDAOTest {
 
     @Test
     public void delLabelPatient() {
-        System.out.println(labelPatientDAO.delLabelPatient(1));
+        System.out.println(labelPatientDAO.delLabelPatient(18,39));
     }
 
     @Test
