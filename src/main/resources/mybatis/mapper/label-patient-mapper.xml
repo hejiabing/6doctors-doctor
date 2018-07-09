@@ -35,6 +35,6 @@
     </select>
 
     <delete id="delLabelPatient" parameterType="int">
-        delete from t_label_patient where label_patient_id = #{id};
+        delete from t_label_patient where label_id = #{labelId} and patient_id = #{patientId};
     </delete>
 </mapper>

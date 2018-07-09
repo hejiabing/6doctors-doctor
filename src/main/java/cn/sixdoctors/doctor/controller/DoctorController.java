@@ -63,9 +63,10 @@ public class DoctorController {
 
     @ApiOperation("移除病人的标签（分组）")
     @PostMapping(value = "/delLabelPatient")
-    public VO<LabelPatient> delLabelPatient(@RequestParam String token, @RequestParam int labelPatientId,
+    public VO<LabelPatient> delLabelPatient(@RequestParam String token, @RequestParam int labelId,
+                                            @RequestParam int patientId,
                                             @ApiIgnore @RequestAttribute Integer doctorId) {
-        return labelWrapper.delLabelPatient(labelPatientId, doctorId);
+        return labelWrapper.delLabelPatient(labelId, patientId, doctorId);
     }
 
     @ApiOperation("查看标签（分组）中的所有患者")
